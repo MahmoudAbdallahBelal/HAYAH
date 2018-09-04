@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layoutDirection="rtl"
+    android:textDirection="rtl"
+    android:layout_gravity="center"
+
+    >
+<LinearLayout
+    android:layoutDirection="rtl"
+    android:textDirection="rtl"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="hayah.hayah.view.register.DonatorActivity">
+
+
+
+
+    <TextView
+        android:layoutDirection="rtl"
+        android:textDirection="rtl"
+        android:layout_marginTop="5dp"
+        android:textColor="#000"
+        android:gravity="center"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:text="متبرع"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+
+    <EditText
+        android:inputType="text"
+        android:layoutDirection="rtl"
+        android:textDirection="rtl"
+        android:id="@+id/edit_name"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:hint="الاسم"
+        android:layout_marginTop="5dp"
+        android:textColor="#000"
+        android:textSize="18sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <EditText
+
+        android:maxLength="2"
+        android:inputType="number"
+        android:layoutDirection="rtl"
+        android:textDirection="rtl"
+        android:id="@+id/edit_age"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:hint="العمر"
+        android:textColor="#000"
+        android:textSize="18sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:id="@+id/linear_address_1"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <AutoCompleteTextView
+
+        android:focusableInTouchMode="true"
+        android:layout_weight=".5"
+        android:layoutDirection="rtl"
+        android:textDirection="rtl"
+        android:id="@+id/edit_address"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:hint="العنوان"
+        android:textColor="#000"
+        android:textSize="18sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+        <ImageButton
+            android:id="@+id/image_button_add_address"
+            android:padding="5dp"
+            android:src="@drawable/map_marker_plus"
+            android:layout_gravity="center"
+            android:layout_weight="3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_address"
+        android:visibility="gone"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <AutoCompleteTextView
+
+
+            android:layout_weight=".5"
+            android:layoutDirection="rtl"
+            android:textDirection="rtl"
+            android:id="@+id/edit_address_2"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:hint="العنوان"
+            android:textColor="#000"
+            android:textSize="18sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <ImageButton
+            android:id="@+id/image_button_add_address_2"
+            android:padding="5dp"
+            android:src="@drawable/map_marker_off"
+            android:layout_gravity="center"
+            android:layout_weight="3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <EditText
+        android:inputType="number"
+        android:layout_weight=".5"
+        android:layoutDirection="rtl"
+        android:textDirection="rtl"
+        android:id="@+id/edit_mobile"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:hint="الموبايل"
+        android:textColor="#000"
+        android:textSize="18sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+        <ImageButton
+            android:id="@+id/image_button_add_mobile"
+            android:padding="5dp"
+            android:src="@drawable/phone_plus"
+            android:layout_gravity="center"
+            android:layout_weight="3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:visibility="gone"
+
+        android:id="@+id/linear_mobile_2"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <EditText
+        android:inputType="number"
+
+        android:layout_weight=".5"
+        android:layoutDirection="rtl"
+        android:textDirection="rtl"
+        android:id="@+id/edit_mobile_2"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:hint=" الموبايل ٢"
+        android:textColor="#000"
+        android:textSize="18sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+        <ImageButton
+            android:id="@+id/image_button_add_mobile_2"
+            android:padding="5dp"
+            android:src="@drawable/phone_minus"
+            android:layout_gravity="center"
+            android:layout_weight="3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+    <EditText
+
+        android:layoutDirection="rtl"
+        android:textDirection="ltr"
+        android:id="@+id/edit_blood_type"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:hint="فصيلة الدم"
+        android:textColor="#000"
+        android:textSize="18sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <ProgressBar
+        android:layoutDirection="rtl"
+        android:textDirection="rtl"
+        android:id="@+id/progress_register"
+        android:visibility="invisible"
+        android:padding="5dp"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+
+        android:layoutDirection="rtl"
+        android:textDirection="rtl"
+        android:background="@color/colorAccent"
+        android:padding="5dp"
+        android:id="@+id/button_register"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="تسجيل"
+        android:textColor="@color/colorWhite"
+        android:textSize="20sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+
+
+</LinearLayout>
+</ScrollView>

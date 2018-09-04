@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layoutDirection="rtl"
+    android:textDirection="rtl"
+    android:layout_height="match_parent"
+    tools:context="hayah.hayah.view.search.PatientActivity">
+
+    <EditText
+        android:editable="false"
+        android:layoutDirection="rtl"
+        android:textDirection="rtl"
+        android:id="@+id/edit_search_city"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:hint="المدينة"
+        android:layout_marginTop="2dp"
+        android:textColor="#000"
+        android:textSize="18sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+<LinearLayout
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <EditText
+        android:focusable="true"
+        android:layout_weight="1"
+        android:layoutDirection="rtl"
+        android:textDirection="ltr"
+        android:id="@+id/edit_search_blood"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:hint="فصيلة الدم"
+        android:textColor="#000"
+        android:textSize="18sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <android.support.v7.widget.AppCompatCheckBox
+        android:textColor="@android:color/darker_gray"
+        android:textSize="18sp"
+        android:id="@+id/checkbox_all"
+        android:layout_margin="3dp"
+        android:text="كل الفصائل"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+   </LinearLayout>
+
+    <Button
+
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:textSize="20sp"
+        android:textColor="@color/colorWhite"
+        android:background="@color/colorAccent"
+        android:id="@+id/button_search"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="بحث"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ProgressBar
+        android:id="@+id/progress_search"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content" />
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycleView_search"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/text_no_result"
+        android:layoutDirection="rtl"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:text="لا يوجدأحد قام بالتسجيل بهذه المدينة أو فصيلة الدم"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    </FrameLayout>
+
+</LinearLayout>
