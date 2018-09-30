@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layoutDirection="locale"
+    android:textDirection="locale"
+
+    >
+    <LinearLayout
+        android:layoutDirection="locale"
+        android:textDirection="locale"
+        android:orientation="vertical"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+
+
+
+        <TextView
+            android:layoutDirection="locale"
+            android:textDirection="locale"
+            android:layout_marginTop="5dp"
+            android:textColor="#000"
+            android:gravity="center"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:text="@string/choice_screen_donator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+
+
+        <EditText
+            android:hint="@string/sign_up_name"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:inputType="text"
+            android:layoutDirection="locale"
+            android:textDirection="locale"
+            android:id="@+id/edit_name"
+            android:textColor="#000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <EditText
+            android:hint="@string/sign_up_age"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:maxLength="2"
+            android:inputType="number"
+            android:layoutDirection="locale"
+            android:textDirection="locale"
+            android:id="@+id/edit_age"
+            android:textColor="#000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+
+        <!--<LinearLayout-->
+        <!--android:id="@+id/linear_address"-->
+        <!--android:visibility="gone"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
+        <!--<AutoCompleteTextView-->
+
+
+        <!--android:layout_weight=".5"-->
+        <!--android:layoutDirection="rtl"-->
+        <!--android:textDirection="rtl"-->
+        <!--android:id="@+id/edit_address_2"-->
+        <!--android:layout_marginLeft="20dp"-->
+        <!--android:layout_marginRight="20dp"-->
+        <!--android:hint="العنوان"-->
+        <!--android:textColor="#000"-->
+        <!--android:textSize="18sp"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content" />-->
+
+        <!--<ImageButton-->
+        <!--android:id="@+id/image_button_add_address_2"-->
+        <!--android:padding="5dp"-->
+        <!--android:src="@drawable/map_marker_off"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:layout_weight="3"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content" />-->
+        <!--</LinearLayout>-->
+
+
+        <!--<LinearLayout-->
+        <!--android:visibility="gone"-->
+        <!--android:id="@+id/linear_mobile_2"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
+
+        <!--<EditText-->
+        <!--android:inputType="number"-->
+
+        <!--android:layout_weight=".5"-->
+        <!--android:layoutDirection="rtl"-->
+        <!--android:textDirection="rtl"-->
+        <!--android:id="@+id/edit_mobile_2"-->
+        <!--android:layout_marginLeft="20dp"-->
+        <!--android:layout_marginRight="20dp"-->
+        <!--android:hint=" الموبايل ٢"-->
+        <!--android:textColor="#000"-->
+        <!--android:textSize="18sp"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content" />-->
+        <!--<ImageButton-->
+        <!--android:id="@+id/image_button_add_mobile_2"-->
+        <!--android:padding="5dp"-->
+        <!--android:src="@drawable/phone_minus"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:layout_weight="3"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content" />-->
+        <!--</LinearLayout>-->
+
+
+
+        <EditText
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:textSize="18sp"
+            android:hint="@string/blood_type"
+            android:layoutDirection="locale"
+            android:textDirection="locale"
+            android:id="@+id/edit_blood_type"
+            android:textColor="#000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+
+        <EditText
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:hint="@string/Email"
+
+            android:layoutDirection="locale"
+            android:textDirection="locale"
+            android:id="@+id/edit_email"
+            android:textColor="#000"
+            android:textSize="18sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+
+        <EditText
+
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:hint="@string/password"
+            android:layoutDirection="locale"
+            android:textDirection="locale"
+            android:id="@+id/edit_password"
+            android:textColor="#000"
+            android:textSize="18sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <LinearLayout
+
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:textDirection="locale"
+            android:layoutDirection="locale"
+            android:id="@+id/linear_address_1"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+
+                android:layout_margin="6dp"
+                android:background="@drawable/spinner_background"
+                android:orientation="vertical"
+                android:focusableInTouchMode="true"
+                android:layout_weight="1"
+                android:layoutDirection="locale"
+                android:textDirection="locale"
+                android:id="@+id/spinner_country"
+                android:layout_width="match_parent"
+                android:layout_height="50dp" >
+
+                <TextView
+                    android:id="@+id/text_country_name"
+                    android:gravity="center"
+                    android:text="@string/country"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_margin="6dp"
+
+                android:background="@drawable/spinner_background"
+                android:orientation="vertical"
+                android:focusableInTouchMode="true"
+                android:layout_weight="1"
+                android:layoutDirection="locale"
+                android:textDirection="locale"
+                android:id="@+id/spinner_state"
+                android:layout_width="match_parent"
+                android:layout_height="50dp" >
+
+                <TextView
+                    android:id="@+id/text_state_name"
+                    android:gravity="center"
+                    android:text="@string/state"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_margin="6dp"
+
+                android:background="@drawable/spinner_background"
+                android:orientation="vertical"
+                android:focusableInTouchMode="true"
+                android:layout_weight="1"
+                android:layoutDirection="locale"
+                android:textDirection="locale"
+                android:id="@+id/spinner_city"
+                android:layout_width="match_parent"
+                android:layout_height="50dp" >
+
+                <TextView
+
+                    android:id="@+id/text_city_name"
+                    android:gravity="center"
+                    android:text="@string/city"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+
+
+
+
+            <!--<ImageButton-->
+            <!--android:id="@+id/image_button_add_address"-->
+            <!--android:padding="5dp"-->
+            <!--android:src="@drawable/map_marker_plus"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_weight="3"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content" />-->
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <EditText
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:textSize="18sp"
+                android:hint="@string/sign_up_mobile"
+                android:inputType="number"
+                android:layout_weight=".5"
+                android:layoutDirection="locale"
+                android:textDirection="locale"
+                android:id="@+id/edit_mobile"
+                android:textColor="#000"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <!--<ImageButton-->
+            <!--android:id="@+id/image_button_add_mobile"-->
+            <!--android:padding="5dp"-->
+            <!--android:src="@drawable/phone_plus"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_weight="3"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content" />-->
+
+        </LinearLayout>
+
+        
+
+        <ProgressBar
+            android:layoutDirection="locale"
+            android:textDirection="locale"
+            android:id="@+id/progress_register"
+            android:visibility="invisible"
+            android:padding="5dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Button
+
+            android:layout_marginBottom="15dp"
+            android:layoutDirection="locale"
+            android:textDirection="locale"
+            android:background="@drawable/button_background"
+            android:padding="5dp"
+            android:id="@+id/button_register"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="@string/choice_screen_register"
+            android:textColor="@color/colorWhite"
+            android:textSize="20sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+
+
+    </LinearLayout>
+</ScrollView>

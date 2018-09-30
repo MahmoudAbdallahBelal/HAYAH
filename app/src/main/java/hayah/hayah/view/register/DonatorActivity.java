@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatSpinner;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.MotionEvent;
@@ -24,12 +25,20 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
 import hayah.hayah.R;
 import hayah.hayah.dagger.DaggerApplication;
+import hayah.hayah.models.country.CountryResponse;
+import hayah.hayah.view.Country.countryList.CountryListActivity;
+import hayah.hayah.view.Country.countryList.city.CityListActivity;
+import hayah.hayah.view.Country.countryList.state.StateActivity;
 import hayah.hayah.view.places.PlacesActivity;
 
 public class DonatorActivity extends AppCompatActivity implements RegisterView  , View.OnClickListener{
@@ -46,38 +55,19 @@ public class DonatorActivity extends AppCompatActivity implements RegisterView  
     private LinearLayout linearLayoutAddress2 , linearLayoutAddress1 , linearLayoutMobile2;
     private ImageButton addAddress , removeAddress , addMobile , removeMobile;
 
+    private LinearLayout countrySpinner, stateSpinner , citySpinner;
+    private TextView textCountryName , textStateName , textCityName ;
+
 
 
     String bloodTypeArray[] = {"A+" ,"A-" ,"B+" , "B-" , "O+" , "O-","AB+","AB-" , "لا أعلم"};
 
+    String countryId , stateId ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_donator);
-
-
-        nameEdit = findViewById(R.id.edit_name);
-        registerBtn = findViewById(R.id.button_register);
-        registerBtn.setOnClickListener(this);
-        progressBarRegister = findViewById(R.id.progress_register);
-        linearLayoutAddress2 = findViewById(R.id.linear_address);
-        addAddress = findViewById(R.id.image_button_add_address);
-        removeAddress = findViewById(R.id.image_button_add_address_2);
-        linearLayoutAddress1 = findViewById(R.id.linear_address_1);
-
-        linearLayoutMobile2 = findViewById(R.id.linear_mobile_2);
-
-        addMobile = findViewById(R.id.image_button_add_mobile);
-
-        removeMobile = findViewById(R.id.image_button_add_mobile_2);
-
-
-        ageEdit      = findViewById(R.id.edit_age);
-        addressEdit  = findViewById(R.id.edit_address);
-        addressEdit2 = findViewById(R.id.edit_address_2);
-        mobileEdit   = findViewById(R.id.edit_mobile);
-        mobileEdit2  = findViewById(R.id.edit_mobile_2);
-        bloodType    = findViewById(R.id.edit_blood_type);
+        setContentView(R.layout.activity_donator_register);
 
 
 
@@ -86,65 +76,58 @@ public class DonatorActivity extends AppCompatActivity implements RegisterView  
         registerPresenter.onAttach(this);
 
 
+        bloodType = findViewById(R.id.edit_blood_type);
+        countrySpinner = findViewById(R.id.spinner_country);
+        stateSpinner = findViewById(R.id.spinner_state);
+        textCountryName = findViewById(R.id.text_country_name);
+        textStateName = findViewById(R.id.text_state_name);
 
-        addressEdit.setOnTouchListener(new View.OnTouchListener() {
+        textCityName = findViewById(R.id.text_city_name);
+        textStateName = findViewById(R.id.text_state_name);
+        citySpinner = findViewById(R.id.spinner_city);
+
+        countrySpinner.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_DOWN)
-                {
-                    Intent intent = new Intent(DonatorActivity.this , PlacesActivity.class);
-                    startActivityForResult(intent , 2020);
+            public void onClick(View v) {
+                Intent intent = new Intent(DonatorActivity.this ,CountryListActivity.class);
+                startActivityForResult(intent , 1);
+
+            }
+        });
+
+
+        stateSpinner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(countryId!= null) {
+                    Intent intent = new Intent(DonatorActivity.this, StateActivity.class);
+                    intent.putExtra("country_id", countryId);
+                    startActivityForResult(intent, 2);
                 }
-
-
-                return false;
-            }
-        });
-
-
-
-        addressEdit2.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_DOWN)
+                else
                 {
-                    Intent intent = new Intent(DonatorActivity.this , PlacesActivity.class);
-                    startActivityForResult(intent , 2030);
+                    Toast.makeText(DonatorActivity.this, getString(R.string.select_country), Toast.LENGTH_LONG).show();
                 }
-
-
-                return false;
             }
         });
 
-        addAddress.setOnClickListener(new View.OnClickListener() {
+
+       citySpinner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                linearLayoutAddress2.setVisibility(View.VISIBLE);
+                if(stateId!= null) {
+                    Intent intent = new Intent(DonatorActivity.this, CityListActivity.class);
+                    intent.putExtra("state_id", stateId);
+                    startActivityForResult(intent, 3);
+                }
+                else
+                {
+                    Toast.makeText(DonatorActivity.this, getString(R.string.city), Toast.LENGTH_LONG).show();
+                }
             }
         });
 
-        removeAddress.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                linearLayoutAddress2.setVisibility(View.GONE);
-            }
-        });
 
-
-        addMobile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                linearLayoutMobile2.setVisibility(View.VISIBLE);
-            }
-        });
-
-        removeMobile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                linearLayoutMobile2.setVisibility(View.GONE);
-            }
-        });
 
 
         bloodType.setOnTouchListener(new View.OnTouchListener() {
@@ -231,72 +214,68 @@ public class DonatorActivity extends AppCompatActivity implements RegisterView  
     @Override
     public void showNameError() {
 
-      nameEdit.setError("أدخل الاسم");
     }
 
     @Override
     public void showAgeError() {
 
-        ageEdit.setError("أدخل العمر");
     }
 
     @Override
     public void showAgeLimitError() {
-        ageEdit.setError("لابد أن يبدأ سن المتبرع من ١٨ عام");
 
     }
 
     @Override
     public void showAddressError() {
 
-        addressEdit.setError("أدخل العنوان");
     }
 
     @Override
     public void showMobileError() {
-        mobileEdit.setError("أدخل رقم الموبايل");
 
     }
 
     @Override
     public void showBloodTypeError() {
 
-        bloodType.setError("اختر فصيلة الدم الخاصة بك");
     }
+
+
 
     @Override
     public String getName() {
-        return nameEdit.getText().toString();
+        return null;
     }
 
     @Override
     public String getAge() {
-        return ageEdit.getText().toString();
+        return null;
     }
 
     @Override
     public String getAddress() {
-        return addressEdit.getText().toString();
+        return null;
     }
 
     @Override
     public String getAddress2() {
-        return addressEdit2.getText().toString();
+        return null;
     }
 
     @Override
     public String getMobile() {
-        return mobileEdit.getText().toString();
+        return null;
     }
 
     @Override
     public String getMobile2() {
-        return mobileEdit2.getText().toString();
+        return null;
     }
 
     @Override
     public String getBloodType() {
-        return bloodType.getText().toString();
+        return null;
     }
 
     @Override
@@ -305,7 +284,7 @@ public class DonatorActivity extends AppCompatActivity implements RegisterView  
         {
             case R.id.button_register :
 
-                registerPresenter.registerPresenter();
+               // registerPresenter.registerPresenter();
                 break;
 
 
@@ -315,32 +294,54 @@ public class DonatorActivity extends AppCompatActivity implements RegisterView  
 
 
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 2020) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == 1) {
             if(resultCode == Activity.RESULT_OK){
-                String result=data.getStringExtra("result");
-                addressEdit.setText(result);
+                String countryEnglish=data.getStringExtra("country_en");
+                textCountryName .setText(countryEnglish);
+                countryId = data.getStringExtra("country_id");
+
+
+                textStateName .setText(getString(R.string.state));
+                textCityName .setText(getString(R.string.city));
+
+
             }
-            if (resultCode == Activity.RESULT_CANCELED) {
-                //Write your code if there's no result
+
+        }
+
+       else  if (requestCode == 2) {
+            if(resultCode == Activity.RESULT_OK){
+                String countryEnglish=data.getStringExtra("state_en");
+                textStateName .setText(countryEnglish);
+                stateId = data.getStringExtra("state_id");
+
+
+                textCityName .setText(getString(R.string.city));
+
+
             }
+
+        }
+
+        else  if (requestCode == 3) {
+            if(resultCode == Activity.RESULT_OK){
+                String cityEnglish=data.getStringExtra("city_en");
+                textCityName .setText(cityEnglish);
+
+
+            }
+
         }
 
 
+    }//onActivityResult
 
 
 
-     else if (requestCode == 2030) {
-            if(resultCode == Activity.RESULT_OK){
-                String result=data.getStringExtra("result");
-                addressEdit2.setText(result);
-            }
-            if (resultCode == Activity.RESULT_CANCELED) {
-                //Write your code if there's no result
-            }
-        }
 
-    }
+
+
 }

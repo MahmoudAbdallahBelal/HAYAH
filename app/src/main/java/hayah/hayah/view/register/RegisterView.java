@@ -1,7 +1,10 @@
 package hayah.hayah.view.register;
 
 
+import java.util.List;
+
 import hayah.hayah.baseClass.BaseView;
+import hayah.hayah.models.country.CountryResponse;
 
 //class created for register function for main view
 public interface RegisterView extends BaseView {

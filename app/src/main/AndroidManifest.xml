@@ -35,7 +35,11 @@
         <activity android:name=".view.register.DonatorActivity" />
         <activity android:name=".view.search.PatientActivity" />
         <activity android:name=".view.places.PlacesActivity" />
-        <activity android:name=".view.register.SuccessRegisterActivity"></activity>
+        <activity android:name=".view.register.SuccessRegisterActivity" />
+        <activity android:name=".view.DonatorLoginChoice.DonatorLoginRegisterChoiceActivity" />
+        <activity android:name=".view.Country.countryList.CountryListActivity" />
+        <activity android:name=".view.Country.countryList.state.StateActivity" />
+        <activity android:name=".view.Country.countryList.city.CityListActivity"></activity>
     </application>
 
 </manifest>

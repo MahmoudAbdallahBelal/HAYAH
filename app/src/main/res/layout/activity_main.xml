@@ -7,8 +7,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layoutDirection="rtl"
-    android:textDirection="rtl"
+    android:layoutDirection="locale"
+    android:textDirection="locale"
     tools:context="hayah.hayah.MainActivity">
 
 
@@ -20,7 +20,7 @@
         android:layout_height="match_parent">
 
     <ImageView
-        android:layoutDirection="rtl"
+        android:layoutDirection="locale"
         android:padding="60dp"
         android:src="@drawable/hayah_mid"
         android:layout_width="match_parent"
@@ -32,13 +32,13 @@
 
 
     <TextView
-        android:layoutDirection="rtl"
-
+        android:textAllCaps="true"
+        android:layoutDirection="locale"
         android:layout_gravity="center"
         android:padding="10dp"
         android:gravity="center"
-        android:textSize="25sp"
-        android:text="تسجيل"
+        android:textSize="20sp"
+        android:text="@string/choice_screen_login"
         android:textColor="@color/colorAccent"
         android:textStyle="bold"
         android:layout_width="match_parent"
@@ -47,31 +47,31 @@
 
     <Button
         android:layout_marginTop="50dp"
-        android:layoutDirection="rtl"
+        android:layoutDirection="locale"
         android:textColor="@color/colorWhite"
-        android:background="@color/colorAccent"
+        android:background="@drawable/button_background"
         android:id="@+id/button_donator"
         android:layout_marginRight="50dp"
         android:layout_marginLeft="50dp"
         android:textStyle="bold"
-        android:textSize="25sp"
-        android:text="متبرع"
+        android:textSize="17sp"
+        android:text="@string/choice_screen_donator"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
 
     <Button
-        android:layoutDirection="rtl"
+        android:layoutDirection="locale"
 
         android:textColor="@color/colorWhite"
-        android:background="@color/colorAccent"
+        android:background="@drawable/button_background"
         android:id="@+id/button_patient"
         android:layout_marginTop="5dp"
         android:layout_marginRight="50dp"
         android:layout_marginLeft="50dp"
         android:textStyle="bold"
-        android:textSize="25sp"
-        android:text="مريض"
+        android:textSize="17sp"
+        android:text="@string/choice_screen_patient"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

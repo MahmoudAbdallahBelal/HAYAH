@@ -7,6 +7,9 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import hayah.hayah.view.Country.countryList.CountryListPresenter;
+import hayah.hayah.view.Country.countryList.city.CityListPresenter;
+import hayah.hayah.view.Country.countryList.state.StatesListPresenter;
 import hayah.hayah.view.register.RegisterPresenter;
 import hayah.hayah.view.search.SearchPresenter;
 
@@ -30,6 +33,29 @@ public class PresenterModule {
     SearchPresenter provideSearchPresenter(Context context) {
 
         return new SearchPresenter(context);
+    }
+
+
+    @Provides
+    @Singleton
+    CountryListPresenter provideCountryListPresenter(Context context) {
+
+        return new CountryListPresenter(context);
+    }
+
+
+    @Provides
+    @Singleton
+    StatesListPresenter provideStatesListPresenter(Context context) {
+
+        return new StatesListPresenter(context);
+    }
+
+    @Provides
+    @Singleton
+    CityListPresenter provideCityListPresenter(Context context) {
+
+        return new CityListPresenter(context);
     }
 
 }

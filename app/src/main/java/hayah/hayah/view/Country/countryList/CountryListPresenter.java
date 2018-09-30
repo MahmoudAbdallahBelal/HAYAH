@@ -1,4 +1,4 @@
-package hayah.hayah.view.register;
+package hayah.hayah.view.Country.countryList;
 
 import android.content.Context;
 import android.widget.Toast;
@@ -9,7 +9,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import hayah.hayah.R;
 import hayah.hayah.apiClient.ApiInterface;
 import hayah.hayah.baseClass.BasePresenter;
 import hayah.hayah.dagger.DaggerApplication;
@@ -17,27 +16,25 @@ import hayah.hayah.helper.Utilities;
 import hayah.hayah.models.country.CountryResponse;
 import hayah.hayah.models.register.RegisterRequest;
 import hayah.hayah.models.register.RegisterResponse;
+import hayah.hayah.view.register.RegisterView;
 import okhttp3.ResponseBody;
-
-import retrofit2.adapter.rxjava.HttpException;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 
-public class RegisterPresenter implements BasePresenter<RegisterView> {
-    RegisterView mView;
+public class CountryListPresenter implements BasePresenter<CountryListView> {
+    CountryListView mView;
     boolean isLoaded = false;
     @Inject
     ApiInterface mApiInterface;
     @Inject
     Context mContext;
-    RegisterRequest registerRequest;
 
 
 
     @Override
-    public void onAttach(RegisterView view) {
+    public void onAttach(CountryListView view) {
         mView = view;
         mView.onAttache();
 
@@ -50,78 +47,35 @@ public class RegisterPresenter implements BasePresenter<RegisterView> {
         mView = null;
     }
     //create Constructor to get reference of api interface object
-    public RegisterPresenter(Context context){
+    public CountryListPresenter(Context context){
         ((DaggerApplication)context).getAppComponent().inject(this);
     }
 
     //this function created to load items from specific endpoint
-    public void registerPresenter() {
+    public void getCountries() {
 
         try {
             if (!Utilities.checkConnection(mContext)) {
-                mView.showErrorMessage("الرجاء التأكد من الاتصال بالانترنت");
+                mView.showErrorMessage("");
                 checkConnection(false);
                 return;
             }
 
-
             if (!Utilities.checkConnection(mContext)) {
 
-                Toast.makeText(mContext, "الرجاء التأكد من الاتصال بالانترنت", Toast.LENGTH_SHORT).show();
-                return;
-
-            }
-            else if (mView.getName().equals("")) {
-                mView.showNameError();
-                return;
-
-            } else if (mView.getAge().equals("")) {
-
-                mView.showAgeError();
-                return;
-
-            }
-            else if (Integer.parseInt(mView.getAge()) < 18 ) {
-
-                mView.showAgeLimitError();
-                return;
-
-            }
-            else if (mView.getAddress().equals("")) {
-
-                mView.showAddressError();
-                return;
-
-            } else if (mView.getMobile().equals("")) {
-
-                mView.showMobileError();
+                Toast.makeText(mContext, "", Toast.LENGTH_SHORT).show();
                 return;
 
             }
 
-            else if (mView.getBloodType().equals("")) {
-
-                mView.showBloodTypeError();
-                return;
-
-            }
 
             else {
                 mView.showLoading();
 
-                registerRequest = new RegisterRequest();
-                registerRequest.setName(mView.getName());
-                registerRequest.setAge(mView.getAge());
-                registerRequest.setAddress(mView.getAddress());
-                registerRequest.setAddress2(mView.getAddress2());
-                registerRequest.setPhone(mView.getMobile());
-                registerRequest.setPhone2(mView.getMobile2());
-                registerRequest.setBlood_type(mView.getBloodType());
-
-                mApiInterface.registerObservable(registerRequest)
+                mApiInterface.getCountriesObservable()
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(new Subscriber<RegisterResponse>() {
+                        .subscribe(new Subscriber<List<CountryResponse>>() {
                             @Override
                             public final void onCompleted() {
 
@@ -139,9 +93,9 @@ public class RegisterPresenter implements BasePresenter<RegisterView> {
                             }
 
                             @Override
-                            public final void onNext(RegisterResponse response) {
-                                isLoaded = true;
-                                mView.showSuccessMessage(response.getMessage());
+                            public final void onNext(List<CountryResponse> response) {
+
+                                mView.showCountryList(response);
 
                             }
                         });
@@ -151,7 +105,7 @@ public class RegisterPresenter implements BasePresenter<RegisterView> {
 
         }catch (Exception e)
         {
-            mView.showErrorMessage("Error, try again");
+            mView.showErrorMessage("");
 
         }
 
@@ -167,7 +121,7 @@ public class RegisterPresenter implements BasePresenter<RegisterView> {
     void checkConnection(boolean isConnected) {
         //check internet and  data not loaded
         if(isConnected  && !isLoaded){
-            registerPresenter();
+            getCountries();
             isLoaded = false;
             mView.showErrorMessage("internet connected");
         }if(!isConnected && isLoaded){

@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import hayah.hayah.view.DonatorLoginChoice.DonatorLoginRegisterChoiceActivity;
 import hayah.hayah.view.register.DonatorActivity;
 import hayah.hayah.view.search.PatientActivity;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,12 +21,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         donatorBtn= findViewById(R.id.button_donator);
+
+
         donatorBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, DonatorActivity.class));
+                startActivity(new Intent(MainActivity.this, DonatorLoginRegisterChoiceActivity.class));
             }
         });
+
 
         patientBtn= findViewById(R.id.button_patient);
         patientBtn.setOnClickListener(new View.OnClickListener() {
