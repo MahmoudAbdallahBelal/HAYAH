@@ -17,5 +17,7 @@
 
     <string name="select_country">Select Country</string>
     <string name="select_city">Select City</string>
+    <string name="sign_in_email">Email</string>
+
 </resources>
 

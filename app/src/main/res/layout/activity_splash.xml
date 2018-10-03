@@ -7,13 +7,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     tools:context="hayah.hayah.SplashActivity">
 
 
 
 
     <ImageView
-        android:src="@drawable/hayah"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:src="@drawable/hayah_new_logo"
+        android:layout_width="300dp"
+        android:layout_height="300dp" />
 </LinearLayout>

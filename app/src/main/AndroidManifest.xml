@@ -13,7 +13,7 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/hayah"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBC2rtkfB4A81peZW8qSLVGW4lb6HW_Lvo" />
@@ -37,9 +37,12 @@
         <activity android:name=".view.places.PlacesActivity" />
         <activity android:name=".view.register.SuccessRegisterActivity" />
         <activity android:name=".view.DonatorLoginChoice.DonatorLoginRegisterChoiceActivity" />
-        <activity android:name=".view.Country.countryList.CountryListActivity" />
+        <activity
+            android:name=".view.Country.countryList.country.CountryListActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".view.Country.countryList.state.StateActivity" />
-        <activity android:name=".view.Country.countryList.city.CityListActivity"></activity>
+        <activity android:name=".view.Country.countryList.city.CityListActivity" />
+        <activity android:name=".view.login.LoginActivity"></activity>
     </application>
 
 </manifest>

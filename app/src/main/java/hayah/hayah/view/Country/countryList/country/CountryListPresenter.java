@@ -1,4 +1,4 @@
-package hayah.hayah.view.Country.countryList;
+package hayah.hayah.view.Country.countryList.country;
 
 import android.content.Context;
 import android.widget.Toast;
@@ -14,9 +14,6 @@ import hayah.hayah.baseClass.BasePresenter;
 import hayah.hayah.dagger.DaggerApplication;
 import hayah.hayah.helper.Utilities;
 import hayah.hayah.models.country.CountryResponse;
-import hayah.hayah.models.register.RegisterRequest;
-import hayah.hayah.models.register.RegisterResponse;
-import hayah.hayah.view.register.RegisterView;
 import okhttp3.ResponseBody;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;

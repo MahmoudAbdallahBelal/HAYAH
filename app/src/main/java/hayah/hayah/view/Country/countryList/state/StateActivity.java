@@ -15,8 +15,6 @@ import javax.inject.Inject;
 import hayah.hayah.R;
 import hayah.hayah.dagger.DaggerApplication;
 import hayah.hayah.models.States.StatesResponse;
-import hayah.hayah.view.Country.countryList.CountryListActivity;
-import hayah.hayah.view.Country.countryList.CountryListAdapter;
 
 public class StateActivity extends AppCompatActivity implements StateListView{
 

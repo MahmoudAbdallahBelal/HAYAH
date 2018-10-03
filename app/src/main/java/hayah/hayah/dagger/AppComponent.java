@@ -4,8 +4,8 @@ package hayah.hayah.dagger;
 import javax.inject.Singleton;
 
 import dagger.Component;
-import hayah.hayah.view.Country.countryList.CountryListActivity;
-import hayah.hayah.view.Country.countryList.CountryListPresenter;
+import hayah.hayah.view.Country.countryList.country.CountryListActivity;
+import hayah.hayah.view.Country.countryList.country.CountryListPresenter;
 import hayah.hayah.view.Country.countryList.city.CityListActivity;
 import hayah.hayah.view.Country.countryList.city.CityListPresenter;
 import hayah.hayah.view.Country.countryList.state.StateActivity;

@@ -5,13 +5,8 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatSpinner;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,21 +20,16 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.List;
 
 import javax.inject.Inject;
 
 import hayah.hayah.R;
 import hayah.hayah.dagger.DaggerApplication;
-import hayah.hayah.models.country.CountryResponse;
-import hayah.hayah.view.Country.countryList.CountryListActivity;
+import hayah.hayah.view.Country.countryList.country.CountryListActivity;
 import hayah.hayah.view.Country.countryList.city.CityListActivity;
 import hayah.hayah.view.Country.countryList.state.StateActivity;
-import hayah.hayah.view.places.PlacesActivity;
 
 public class DonatorActivity extends AppCompatActivity implements RegisterView  , View.OnClickListener{
 

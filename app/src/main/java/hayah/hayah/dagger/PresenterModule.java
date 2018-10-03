@@ -7,7 +7,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import hayah.hayah.view.Country.countryList.CountryListPresenter;
+import hayah.hayah.view.Country.countryList.country.CountryListPresenter;
 import hayah.hayah.view.Country.countryList.city.CityListPresenter;
 import hayah.hayah.view.Country.countryList.state.StatesListPresenter;
 import hayah.hayah.view.register.RegisterPresenter;

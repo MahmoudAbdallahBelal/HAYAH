@@ -14,8 +14,6 @@ import hayah.hayah.baseClass.BasePresenter;
 import hayah.hayah.dagger.DaggerApplication;
 import hayah.hayah.helper.Utilities;
 import hayah.hayah.models.city.CityResponse;
-import hayah.hayah.models.country.CountryResponse;
-import hayah.hayah.view.Country.countryList.CountryListView;
 import okhttp3.ResponseBody;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;

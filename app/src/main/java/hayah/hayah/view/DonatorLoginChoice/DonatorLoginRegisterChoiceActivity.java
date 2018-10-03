@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import hayah.hayah.R;
+import hayah.hayah.view.login.LoginActivity;
 import hayah.hayah.view.register.DonatorActivity;
 
 public class DonatorLoginRegisterChoiceActivity extends AppCompatActivity implements View.OnClickListener{
@@ -24,11 +25,7 @@ public class DonatorLoginRegisterChoiceActivity extends AppCompatActivity implem
         signUpBtn.setOnClickListener(this);
         signInBtn.setOnClickListener(this);
 
-
-
     }
-
-
 
     @Override
     public void onClick(View v) {
@@ -41,7 +38,7 @@ public class DonatorLoginRegisterChoiceActivity extends AppCompatActivity implem
                 break;
 
             case R.id.button_sign_in :
-
+                startLoginActivityActivity();
                 break;
 
 
@@ -53,6 +50,12 @@ public class DonatorLoginRegisterChoiceActivity extends AppCompatActivity implem
 
     private void startDonatorRegisterActivity(){
         Intent intent = new Intent(DonatorLoginRegisterChoiceActivity.this , DonatorActivity.class);
+        startActivity(intent);
+    }
+
+
+    private void startLoginActivityActivity(){
+        Intent intent = new Intent(DonatorLoginRegisterChoiceActivity.this , LoginActivity.class);
         startActivity(intent);
     }
 }
