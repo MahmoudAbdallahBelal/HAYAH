@@ -9,7 +9,7 @@
     android:layout_height="match_parent"
     android:layoutDirection="locale"
     android:textDirection="locale"
-    tools:context="hayah.hayah.MainActivity">
+    tools:context="hayah.donation.MainActivity">
 
 
     <LinearLayout

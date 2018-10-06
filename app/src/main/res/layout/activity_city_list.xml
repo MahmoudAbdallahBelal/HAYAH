@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="hayah.hayah.view.Country.countryList.city.CityListActivity">
+    tools:context="hayah.donation.view.Country.countryList.city.CityListActivity">
 
 
     <ListView

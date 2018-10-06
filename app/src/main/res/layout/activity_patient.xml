@@ -9,7 +9,7 @@
     android:layoutDirection="rtl"
     android:textDirection="rtl"
     android:layout_height="match_parent"
-    tools:context="hayah.hayah.view.search.PatientActivity">
+    tools:context="hayah.donation.view.search.PatientActivity">
 
     <EditText
         android:editable="false"

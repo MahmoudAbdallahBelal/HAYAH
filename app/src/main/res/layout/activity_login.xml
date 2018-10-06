@@ -20,6 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <EditText
+            android:hint="@string/Email"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:textSize="18sp"
@@ -40,13 +41,15 @@
         android:layout_height="wrap_content">
         <EditText
 
+
+            android:hint="@string/password"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:textSize="18sp"
             android:inputType="textPassword"
             android:layoutDirection="locale"
             android:textDirection="locale"
-            android:id="@+id/edit_mobile"
+            android:id="@+id/edit_password_login"
             android:textColor="#000"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -68,7 +71,7 @@
     android:textDirection="locale"
     android:background="@drawable/button_background"
     android:padding="5dp"
-    android:id="@+id/button_register"
+    android:id="@+id/button_login"
     android:layout_marginLeft="20dp"
     android:layout_marginRight="20dp"
     android:text="@string/choice_screen_login"

@@ -10,7 +10,7 @@
     android:gravity="center"
     android:layoutDirection="locale"
     android:textDirection="locale"
-    tools:context="hayah.hayah.view.DonatorLoginChoice.DonatorLoginRegisterChoiceActivity">
+    tools:context="hayah.donation.view.DonatorLoginChoice.DonatorLoginRegisterChoiceActivity">
 
 
     <Button

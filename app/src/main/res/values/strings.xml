@@ -18,6 +18,22 @@
     <string name="select_country">Select Country</string>
     <string name="select_city">Select City</string>
     <string name="sign_in_email">Email</string>
+    <string name="profile_available">Available for blood donation</string>
+    <string name="profile_update">Update</string>
 
+    <string name="check_internet">please, check Internet Connection</string>
+
+    <string name="name_error">Enter name</string>
+    <string name="age_error_limit">Age must be >= 18 </string>
+    <string name="age_error">Enter age </string>
+    <string name="country_error">Select country</string>
+    <string name="state_error">Select state</string>
+    <string name="city_error">Select city</string>
+    <string name="phone_error">Enter valid mobile</string>
+    <string name="email_error">Enter valid email</string>
+    <string name="password_error">password must be 8 characters</string>
+    <string name="blood_type_error">Select your blood type</string>
+
+    <string name="general_error">Error, try again</string>
 </resources>
 
