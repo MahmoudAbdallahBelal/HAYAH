@@ -1,6 +1,7 @@
 package hayah.donation.view.Country.countryList.country;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
@@ -15,14 +16,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import hayah.donation.R;
 import hayah.donation.dagger.DaggerApplication;
+import hayah.donation.helper.Utilities;
 import hayah.donation.models.country.CountryResponse;
 
 public class CountryListActivity extends AppCompatActivity implements  CountryListView, ChooseCountryAdapter.OnCountrySelectedListener {
@@ -37,6 +41,9 @@ public class CountryListActivity extends AppCompatActivity implements  CountryLi
 
     private  String countryNameSelected;
     private  String NameCountryEn , NameCountryAr,CountryPhoneCode ,CountryId;
+
+    private ProgressDialog progressBar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +60,10 @@ public class CountryListActivity extends AppCompatActivity implements  CountryLi
         ((DaggerApplication) getApplication()).getAppComponent().inject(this);
         countryListPresenter.onAttach(this);
 
-        setTitle("Choose Country");
+        progressBar = new ProgressDialog(CountryListActivity.this);
+
+        progressBar.setMessage(getString(R.string.loading));
+        setTitle(getString(R.string.country));
 
         toolbar.setNavigationIcon(ContextCompat.getDrawable(this, android.R.drawable.ic_menu_close_clear_cancel));
         LinearLayoutManager manager = new LinearLayoutManager(this);
@@ -89,12 +99,14 @@ public class CountryListActivity extends AppCompatActivity implements  CountryLi
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+               if(adapter != null)
                 adapter.getFilter().filter(query);
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
+               if(adapter != null)
                 adapter.getFilter().filter(newText);
                 return false;
             }
@@ -114,11 +126,13 @@ public class CountryListActivity extends AppCompatActivity implements  CountryLi
     @Override
     public void showLoading() {
 
+        progressBar.show();
     }
 
     @Override
     public void hideLoading() {
 
+        progressBar.dismiss();
     }
 
     @Override
@@ -137,9 +151,27 @@ public class CountryListActivity extends AppCompatActivity implements  CountryLi
     public void showCountryList(final List<CountryResponse> responseList) {
 
         try {
-            adapter = new ChooseCountryAdapter(responseList, countryNameSelected, this);
-            recyclerView.setAdapter(adapter);
-        } catch (Exception e) {
+            List<CountryResponse> responseListArabic = new ArrayList<>();
+
+            if (Utilities.getLanguage().equals("ar")){
+
+                for(int i =0 ; i < responseList.size() ; i++){
+            if(!responseList.get(i).getName_ar().equals("غير مترجم")) {
+
+                responseListArabic.add(responseList.get(i));
+            }
+
+            }
+                adapter = new ChooseCountryAdapter(responseListArabic, countryNameSelected, this);
+                recyclerView.setAdapter(adapter);
+            }
+          else  if (Utilities.getLanguage().equals("en")){
+                adapter = new ChooseCountryAdapter(responseList, countryNameSelected, this);
+                recyclerView.setAdapter(adapter);
+            }
+
+
+            } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -190,7 +222,7 @@ public class CountryListActivity extends AppCompatActivity implements  CountryLi
 
         Intent returnIntent = new Intent();
         returnIntent.putExtra("country_en",countryNameSelected);
-        returnIntent.putExtra("country_ar",NameCountryAr);
+        returnIntent.putExtra("country_ar",countryNameSelected);
         returnIntent.putExtra("phone_code",CountryPhoneCode);
         returnIntent.putExtra("country_id",CountryId);
         setResult(Activity.RESULT_OK,returnIntent);

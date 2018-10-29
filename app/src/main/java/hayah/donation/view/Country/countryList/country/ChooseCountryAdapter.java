@@ -15,7 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import hayah.donation.R;
+import hayah.donation.helper.Utilities;
 import hayah.donation.models.country.CountryResponse;
+import okhttp3.internal.Util;
 
 public class ChooseCountryAdapter extends RecyclerView.Adapter<ChooseCountryAdapter.ChooseCountryHolder> implements Filterable {
 
@@ -46,6 +48,7 @@ public class ChooseCountryAdapter extends RecyclerView.Adapter<ChooseCountryAdap
     public void onBindViewHolder(@NonNull ChooseCountryHolder holder, final int position) {
 
 
+        if(Utilities.getLanguage().equals("en")) {
             holder.txtName.setText(countriesFiltered.get(position).getName_en());
             if(countryNameSelected !=null && countryNameSelected.toLowerCase().equals(countriesFiltered.get(position).getName_en().toLowerCase())){
                 holder.itemRow.setBackgroundColor(holder.itemView.getContext().getResources().getColor(R.color.colorGray));
@@ -59,6 +62,25 @@ public class ChooseCountryAdapter extends RecyclerView.Adapter<ChooseCountryAdap
 
                 }
             });
+
+        }
+        else if(Utilities.getLanguage().equals("ar")){
+
+                holder.txtName.setText(countriesFiltered.get(position).getName_ar());
+                if (countryNameSelected != null && countryNameSelected.equals(countriesFiltered.get(position).getName_ar())) {
+                    holder.itemRow.setBackgroundColor(holder.itemView.getContext().getResources().getColor(R.color.colorGray));
+                } else {
+                    holder.itemRow.setBackgroundColor(holder.itemView.getContext().getResources().getColor(R.color.colorWhite));
+                }
+                holder.itemRow.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        listener.getCountrySelected(countriesFiltered.get(position).getName_ar(), countriesFiltered.get(position).getId(), countriesFiltered.get(position).getPhonecode());
+
+                    }
+                });
+
+        }
 
     }
 
@@ -80,13 +102,25 @@ public class ChooseCountryAdapter extends RecyclerView.Adapter<ChooseCountryAdap
                 if(charString.isEmpty()){
                     countriesFiltered = countryResponseList;
                 }else {
-                    List<CountryResponse> filteredList = new ArrayList<>();
-                    for (CountryResponse c : countryResponseList){
-                        if(c.getName_en().toLowerCase().contains(charString.toLowerCase())){
-                            filteredList.add(c);
+                    if(Utilities.getLanguage().equals("en"))
+                    {
+                        List<CountryResponse> filteredList = new ArrayList<>();
+                        for (CountryResponse c : countryResponseList){
+                            if(c.getName_en().toLowerCase().contains(charString.toLowerCase())){
+                                filteredList.add(c);
+                            }
                         }
+                        countriesFiltered = filteredList;
                     }
-                    countriesFiltered = filteredList;
+                    else if(Utilities.getLanguage().equals("ar")){
+                        List<CountryResponse> filteredList = new ArrayList<>();
+                        for (CountryResponse c : countryResponseList){
+                            if(c.getName_ar().contains(charString)){
+                                filteredList.add(c);
+                            }
+                        }
+                        countriesFiltered = filteredList;
+                    }
                 }
                 FilterResults filterResults = new FilterResults();
                 filterResults.values = countriesFiltered;

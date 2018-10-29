@@ -49,36 +49,36 @@ public class SearchPresenter implements BasePresenter<searchView> {
     }
 
     //this function created to load items from specific endpoint
-    public void searchPresenter() {
+    public void searchPresenter(String countryId , String stateId , String cityId , String bloodType) {
 
         try {
-            if (!Utilities.checkConnection(mContext)) {
-                mView.showErrorMessage("الرجاء التأكد من الاتصال بالانترنت");
-                checkConnection(false);
-                return;
-            }
+           if(countryId == null)
+           {
 
+               mView.showCountryError();
+           }
+//           else if(stateId == null)
+//           {
+//               mView.showStateError();
+//           }
+//           else if(cityId == null)
+//           {
+//               mView.showCityError();
+//           }
+           else if(bloodType == null)
+           {
 
-            if (!Utilities.checkConnection(mContext)) {
-
-                Toast.makeText(mContext, "الرجاء التأكد من الاتصال بالانترنت", Toast.LENGTH_SHORT).show();
-                return;
-
-            }
-
-            if (mView.getCity().equals(""))
-            {
-                mView.showCityError("لابد من اختيار المدينة القريبة منك");
-                return;
-            }
+               mView.showBloodTypeError();
+           }
 
             else {
                 mView.showLoading();
 
                 searchRequest = new SearchRequest();
-                searchRequest.setAddress(mView.getCity());
+                searchRequest.setCountry_id(countryId);
+                searchRequest.setState_id(stateId);
+                searchRequest.setCity_id(cityId);
                 searchRequest.setBlood_type(mView.getBloodType());
-
 
                 mApiInterface.searchObservable(searchRequest)
                         .subscribeOn(Schedulers.io())
@@ -125,7 +125,6 @@ public class SearchPresenter implements BasePresenter<searchView> {
     void checkConnection(boolean isConnected) {
         //check internet and  data not loaded
         if(isConnected  && !isLoaded){
-            searchPresenter();
             isLoaded = false;
             mView.showErrorMessage("internet connected");
         }if(!isConnected && isLoaded){

@@ -1,4 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:layoutDirection="locale"
+    android:textDirection="locale"
+    android:gravity="center"
+    >
+
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -7,10 +20,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:gravity="center"
     android:layoutDirection="locale"
     android:textDirection="locale"
+    android:gravity="center"
     tools:context="hayah.donation.view.DonatorLoginChoice.DonatorLoginRegisterChoiceActivity">
+
+
 
 
     <Button
@@ -38,4 +53,22 @@
         android:text="@string/choice_screen_register"
         />
 
+
+
 </LinearLayout>
+
+    <com.google.android.gms.ads.AdView
+        android:layout_marginBottom="3dp"
+        android:layout_gravity="center"
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView_choice_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-2223962490254338/4498230285">
+    </com.google.android.gms.ads.AdView>
+
+
+</RelativeLayout>

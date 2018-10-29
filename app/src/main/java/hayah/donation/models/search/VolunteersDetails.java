@@ -31,41 +31,16 @@ public class VolunteersDetails {
         this.phone = phone;
     }
 
-    public String getPhone2() {
-        return phone2;
+    public String getAge() {
+        return age;
     }
 
-    public void setPhone2(String phone2) {
-        this.phone2 = phone2;
+    public void setAge(String age) {
+        this.age = age;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getAddress2() {
-        return address2;
-    }
-
-    public void setAddress2(String address2) {
-        this.address2 = address2;
-    }
-
-    @SerializedName("phone2")
-
-    private String phone2 ;
-
-
-    @SerializedName("address")
-    private String address ;
-
-
-    @SerializedName("address2")
-    private String address2 ;
+    @SerializedName("age")
+    private String age ;
 
 
 

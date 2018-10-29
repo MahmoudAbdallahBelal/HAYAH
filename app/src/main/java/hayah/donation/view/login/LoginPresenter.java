@@ -3,6 +3,8 @@ package hayah.donation.view.login;
 import android.content.Context;
 import android.widget.Toast;
 
+import org.json.JSONObject;
+
 import javax.inject.Inject;
 
 import hayah.donation.R;
@@ -15,6 +17,8 @@ import hayah.donation.models.login.LoginResponse;
 import hayah.donation.models.register.RegisterRequest;
 import hayah.donation.models.register.RegisterResponse;
 import hayah.donation.view.register.RegisterView;
+import okhttp3.ResponseBody;
+import retrofit2.HttpException;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -58,7 +62,17 @@ public class LoginPresenter implements BasePresenter<LoginView> {
                 checkConnection(false);
                 return;
             }
+            else if(email.equals(""))
+            {
+                mView.showEmailError();
+            }
+            else if(password.equals(""))
+            {
+                mView.showPasswordError();
+            }
             else {
+                mView.showLoading();
+
                 loginRequest = new LoginRequest();
                 loginRequest.setEmail(email);
                 loginRequest.setPassword(password);
@@ -76,18 +90,29 @@ public class LoginPresenter implements BasePresenter<LoginView> {
                             public final void onError(Throwable e) {
 
 
-                                Toast.makeText(mContext, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
-                                mView.hideLoading();
 
+                                //ResponseBody responseBody = ((HttpException) e).response().errorBody();
+                             if(e.getMessage().equals("HTTP 401 Unauthorized")) {
+                                 mView.showError(mContext.getString(R.string.invalid_email_password));
+                             }
+                                mView.showError(mContext.getString(R.string.invalid_email_password));
+
+                                mView.hideLoading();
 
                             }
 
                             @Override
                             public final void onNext(LoginResponse response) {
                                 isLoaded = true;
-                                mView.showSuccess(response.getToken());
+                                if(response.getMessage().equals(""))
+                                {
+                                    mView.showError(mContext.getString(R.string.invalid_email_password));
+                                }else {
 
-                            }
+                                    mView.showSuccess(response.getMessage());
+                                    Utilities.saveUserInfo(mContext, response);
+                                }
+                                }
                         });
 
 
@@ -120,6 +145,18 @@ public class LoginPresenter implements BasePresenter<LoginView> {
         }
     }
 
+private String getErrorMessage(ResponseBody responseBody)
+{
+    try
+    {
 
+        JSONObject jsonObject = new JSONObject(responseBody.string());
+        return jsonObject.getString("error");
+    }
+    catch (Exception e)
+    {
+        return e.getMessage();
+    }
+}
 
 }

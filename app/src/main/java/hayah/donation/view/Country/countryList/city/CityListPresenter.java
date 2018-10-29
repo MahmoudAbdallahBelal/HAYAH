@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import hayah.donation.R;
 import hayah.donation.apiClient.ApiInterface;
 import hayah.donation.baseClass.BasePresenter;
 import hayah.donation.dagger.DaggerApplication;
@@ -53,16 +54,9 @@ public class CityListPresenter implements BasePresenter<CityListView> {
 
         try {
             if (!Utilities.checkConnection(mContext)) {
-                mView.showErrorMessage("");
+                mView.showErrorMessage(mContext.getString(R.string.check_internet));
                 checkConnection(false);
                 return;
-            }
-
-            if (!Utilities.checkConnection(mContext)) {
-
-                Toast.makeText(mContext, "", Toast.LENGTH_SHORT).show();
-                return;
-
             }
 
 
@@ -102,7 +96,7 @@ public class CityListPresenter implements BasePresenter<CityListView> {
 
         }catch (Exception e)
         {
-            mView.showErrorMessage("");
+            mView.showErrorMessage(mContext.getString(R.string.general_error));
 
         }
 

@@ -10,6 +10,8 @@ import hayah.donation.view.Country.countryList.city.CityListActivity;
 import hayah.donation.view.Country.countryList.city.CityListPresenter;
 import hayah.donation.view.Country.countryList.state.StateActivity;
 import hayah.donation.view.Country.countryList.state.StatesListPresenter;
+import hayah.donation.view.donator_profile.DonstorProfileActivity;
+import hayah.donation.view.donator_profile.ProfilePresenter;
 import hayah.donation.view.login.LoginActivity;
 import hayah.donation.view.login.LoginPresenter;
 import hayah.donation.view.register.DonatorActivity;
@@ -45,5 +47,8 @@ public interface AppComponent {
     void inject(LoginActivity loginActivity);
     void inject(LoginPresenter loginPresenter);
 
+
+    void inject(DonstorProfileActivity donstorProfileActivity);
+    void inject(ProfilePresenter profilePresenter);
 
 }

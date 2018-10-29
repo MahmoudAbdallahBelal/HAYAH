@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
@@ -23,13 +24,19 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+
 import javax.inject.Inject;
 
 import hayah.donation.R;
 import hayah.donation.dagger.DaggerApplication;
+import hayah.donation.helper.Utilities;
 import hayah.donation.view.Country.countryList.country.CountryListActivity;
 import hayah.donation.view.Country.countryList.city.CityListActivity;
 import hayah.donation.view.Country.countryList.state.StateActivity;
+import okhttp3.internal.Util;
 
 public class DonatorActivity extends AppCompatActivity implements RegisterView  , View.OnClickListener{
 
@@ -60,6 +67,28 @@ public class DonatorActivity extends AppCompatActivity implements RegisterView  
         setContentView(R.layout.activity_donator_register);
 
 
+        progressBarRegister = findViewById(R.id.progress_register);
+        registerBtn = findViewById(R.id.button_register);
+        nameEdit = findViewById(R.id.edit_name);
+        ageEdit = findViewById(R.id.edit_age);
+        mobileEdit = findViewById(R.id.edit_mobile);
+        bloodType = findViewById(R.id.edit_blood_type);
+        countrySpinner = findViewById(R.id.spinner_country);
+        stateSpinner = findViewById(R.id.spinner_state);
+        citySpinner = findViewById(R.id.spinner_city);
+        textCountryName = findViewById(R.id.text_country_name);
+        textStateName = findViewById(R.id.text_state_name);
+        textCityName = findViewById(R.id.text_city_name);
+        emailEdit = findViewById(R.id.edit_email);
+        passwordEdit = findViewById(R.id.edit_password);
+
+        MobileAds.initialize(this,
+                Utilities.ADMOB_INTIALIZE);
+
+        AdView mAdView = findViewById(R.id.adView_donator_bottom);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
 
         ((DaggerApplication) getApplication()).getAppComponent().inject(this);
 
@@ -81,6 +110,7 @@ public class DonatorActivity extends AppCompatActivity implements RegisterView  
         passwordEdit = findViewById(R.id.edit_password);
 
 
+        registerBtn.setOnClickListener(this);
         countrySpinner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -299,17 +329,17 @@ public class DonatorActivity extends AppCompatActivity implements RegisterView  
 
     @Override
     public String getBloodType() {
-        return null;
+        return bloodType.getText().toString();
     }
 
     @Override
     public String getEmail() {
-        return null;
+        return emailEdit.getText().toString();
     }
 
     @Override
     public String getPassword() {
-        return null;
+        return passwordEdit.getText().toString();
     }
 
     @Override
@@ -318,7 +348,8 @@ public class DonatorActivity extends AppCompatActivity implements RegisterView  
         {
             case R.id.button_register :
 
-                registerPresenter.registerPresenter();
+                registerPresenter.registerPresenter(nameEdit.getText().toString() , ageEdit.getText().toString(),bloodType.getText().toString(),emailEdit.getText().toString(),passwordEdit.getText().toString()
+                ,countryId,stateId,cityId,mobileEdit.getText().toString());
                 break;
 
 
@@ -333,40 +364,96 @@ public class DonatorActivity extends AppCompatActivity implements RegisterView  
 
         if (requestCode == 1) {
             if(resultCode == Activity.RESULT_OK){
+
                 String countryEnglish=data.getStringExtra("country_en");
-                textCountryName .setText(countryEnglish);
-                countryId = data.getStringExtra("country_id");
+                String countryArabic=data.getStringExtra("country_ar");
 
 
-                textStateName .setText(getString(R.string.state));
-                textCityName .setText(getString(R.string.city));
 
+                if(Utilities.getLanguage().equals("en")){
+                if(countryEnglish != null ) {
+
+                    textCountryName .setText(countryEnglish);
+                    countryId = data.getStringExtra("country_id");
+                    textStateName.setText(getString(R.string.state));
+                    textCityName.setText(getString(R.string.city));
+                }
+                else
+                {
+                    textCountryName .setText(getString(R.string.country));
+
+                }
+                }
+                else if (Utilities.getLanguage().equals("ar")){
+                    if(countryArabic != null ) {
+
+                        textCountryName .setText(countryArabic);
+                        countryId = data.getStringExtra("country_id");
+                        textStateName.setText(getString(R.string.state));
+                        textCityName.setText(getString(R.string.city));
+                    }
+                    else
+                    {
+                        textCountryName .setText(getString(R.string.country));
+
+                    }
+                }
 
             }
 
         }
 
        else  if (requestCode == 2) {
-            if(resultCode == Activity.RESULT_OK){
-                String countryEnglish=data.getStringExtra("state_en");
-                textStateName .setText(countryEnglish);
-                stateId = data.getStringExtra("state_id");
-                textCityName .setText(getString(R.string.city));
+            if (resultCode == Activity.RESULT_OK) {
+                String stateEnglish = data.getStringExtra("state_en");
+                String stateArabic = data.getStringExtra("state_ar");
 
+
+                if (Utilities.getLanguage().equals("en")) {
+                    if (stateEnglish != null) {
+                        textStateName.setText(stateEnglish);
+                        stateId = data.getStringExtra("state_id");
+                        textCityName.setText(getString(R.string.city));
+                    } else {
+                        textStateName.setText(getString(R.string.state));
+                    }
+
+                } else if (Utilities.getLanguage().equals("ar")) {
+                    if (stateArabic != null) {
+                        textStateName.setText(stateArabic);
+                        stateId = data.getStringExtra("state_id");
+                        textCityName.setText(getString(R.string.city));
+                    } else {
+                        textStateName.setText(getString(R.string.state));
+                    }
+
+                }
+            }
+            }
+            else if (requestCode == 3) {
+                if (resultCode == Activity.RESULT_OK) {
+                    String cityEnglish = data.getStringExtra("city_en");
+                    String cityArabic = data.getStringExtra("city_en");
+
+
+                    if (Utilities.getLanguage().equals("en")) {
+                        if (cityEnglish != null) {
+                            textCityName.setText(cityEnglish);
+                            cityId = data.getStringExtra("city_id");
+                        } else {
+                            textCityName.setText(getString(R.string.city));
+                        }
+                    } else if (Utilities.getLanguage().equals("ar")) {
+                        if (cityArabic != null) {
+                            textCityName.setText(cityArabic);
+                            cityId = data.getStringExtra("city_id");
+                        } else {
+                            textCityName.setText(getString(R.string.city));
+                        }
+                    }
+                }
 
             }
-
-        }
-
-        else  if (requestCode == 3) {
-            if(resultCode == Activity.RESULT_OK){
-                String cityEnglish=data.getStringExtra("city_en");
-                textCityName.setText(cityEnglish);
-                cityId =data.getStringExtra("city_id");
-
-            }
-
-        }
 
 
     }//onActivityResult

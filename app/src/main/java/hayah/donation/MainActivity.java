@@ -6,6 +6,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+
+import hayah.donation.helper.Utilities;
 import hayah.donation.view.DonatorLoginChoice.DonatorLoginRegisterChoiceActivity;
 import hayah.donation.view.search.PatientActivity;
 
@@ -20,6 +25,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         donatorBtn= findViewById(R.id.button_donator);
+
+
+        MobileAds.initialize(this,
+                Utilities.ADMOB_INTIALIZE);
+
+        AdView mAdViewTop = findViewById(R.id.adView_main_activity_top);
+        AdView mAdViewBottom = findViewById(R.id.adView_main_activity_bottom);
+
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdViewTop.loadAd(adRequest);
+        mAdViewBottom.loadAd(adRequest);
 
 
         donatorBtn.setOnClickListener(new View.OnClickListener() {

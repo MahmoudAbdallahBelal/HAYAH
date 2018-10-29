@@ -10,6 +10,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import hayah.donation.R;
+import hayah.donation.helper.Utilities;
 import hayah.donation.models.country.CountryResponse;
 
 
@@ -59,7 +60,11 @@ public class CountryListAdapter extends BaseAdapter {
             holder = (ViewHolder) view.getTag();
         }
         // Set the results into TextViews
+        if(Utilities.getLanguage().equals("en"))
         holder.countryName.setText(list.get(position).getName_en());
+        else if(Utilities.getLanguage().equals("ar"))
+            holder.countryName.setText(list.get(position).getName_ar());
+
 
 
 

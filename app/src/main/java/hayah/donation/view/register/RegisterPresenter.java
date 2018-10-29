@@ -23,7 +23,6 @@ import rx.schedulers.Schedulers;
 
 public class RegisterPresenter implements BasePresenter<RegisterView> {
     RegisterView mView;
-    boolean isLoaded = false;
     @Inject
     ApiInterface mApiInterface;
     @Inject
@@ -51,82 +50,71 @@ public class RegisterPresenter implements BasePresenter<RegisterView> {
     }
 
     //this function created to load items from specific endpoint
-    public void registerPresenter() {
+    public void registerPresenter(String name , String age , String bloodType , String email ,String password , String countryId ,String stateId , String cityId,String mobile) {
 
         try {
             if (!Utilities.checkConnection(mContext)) {
                 mView.showErrorMessage(mContext.getString(R.string.check_internet));
-                checkConnection(false);
                 return;
             }
 
 
-            if (!Utilities.checkConnection(mContext)) {
-
-                Toast.makeText(mContext, mContext.getString(R.string.check_internet), Toast.LENGTH_SHORT).show();
-                return;
-
-            }
-            else if (mView.getName().equals("")) {
+            else if (name.equals("")) {
                 mView.showNameError();
                 return;
 
-            } else if (mView.getAge().equals("")) {
+            } else if (age.equals("")) {
 
                 mView.showAgeError();
                 return;
 
             }
-            else if (Integer.parseInt(mView.getAge()) < 18 ) {
+            else if ((Integer.parseInt(age)) < 18 ) {
 
                 mView.showAgeLimitError();
                 return;
 
             }
-            else if (mView.getCountyId().equals("")) {
+            else if (bloodType.equals("")) {
+
+                mView.showBloodTypeError();
+                return;
+
+            }
+            else if (password.equals("")) {
+
+                mView.showPasswordError();
+                return;
+
+            }
+
+            else if (countryId == null) {
 
                 mView.showCountryError();
                 return;
 
             }
 
-            else if (mView.getSateId().equals("")) {
+            else if (stateId == null ) {
 
                 mView.showStateError();
                 return;
 
             }
-            else if (mView.getCityId().equals("")) {
+            else if (cityId == null) {
 
                 mView.showCityError();
                 return;
 
             }
-            else if (mView.getMobile().equals("")) {
+            else if (mobile.equals("")) {
 
                 mView.showMobileError();
                 return;
 
             }
 
-            else if (mView.getBloodType().equals("")) {
 
-                mView.showBloodTypeError();
-                return;
-
-            }
-            else if (mView.getEmail().equals("")) {
-
-                mView.showEmailError();
-                return;
-
-            }
-            else if (mView.getPassword().equals("")) {
-
-                mView.showPasswordError();
-                return;
-
-            }
 
             else {
                 mView.showLoading();
@@ -165,7 +153,6 @@ public class RegisterPresenter implements BasePresenter<RegisterView> {
 
                             @Override
                             public final void onNext(RegisterResponse response) {
-                                isLoaded = true;
                                 mView.showSuccessMessage(response.getMessage());
 
                             }
@@ -189,21 +176,6 @@ public class RegisterPresenter implements BasePresenter<RegisterView> {
 
 
 
-    void checkConnection(boolean isConnected) {
-        //check internet and  data not loaded
-        if(isConnected  && !isLoaded){
-            registerPresenter();
-            isLoaded = false;
-            mView.showErrorMessage(mContext.getString(R.string.check_internet));
-        }if(!isConnected && isLoaded){
-            //offline check and  data loaded
-            mView.showErrorMessage(mContext.getString(R.string.check_internet));
-
-
-        }else if(isConnected && isLoaded){
-            mView.showErrorMessage(mContext.getString(R.string.check_internet));
-        }
-    }
 
 
 

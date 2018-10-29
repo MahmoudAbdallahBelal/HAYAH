@@ -20,22 +20,33 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 
 import javax.inject.Inject;
 
 import hayah.donation.R;
 import hayah.donation.dagger.DaggerApplication;
+import hayah.donation.helper.Utilities;
 import hayah.donation.models.search.SearchResponse;
+import hayah.donation.view.Country.countryList.city.CityListActivity;
+import hayah.donation.view.Country.countryList.country.CountryListActivity;
+import hayah.donation.view.Country.countryList.state.StateActivity;
 import hayah.donation.view.places.PlacesActivity;
+import hayah.donation.view.register.DonatorActivity;
 import hayah.donation.view.search.adapter.SearchAdapter;
 
 public class PatientActivity extends AppCompatActivity implements searchView {
 
 
-    private EditText cityEdit , bloodEdit;
+    private EditText  bloodEdit;
     private Button searchBtn ;
     private ProgressBar progressBarSearch;
     private RecyclerView recyclerViewSearch;
@@ -52,19 +63,38 @@ public class PatientActivity extends AppCompatActivity implements searchView {
 
     boolean flagChecked = false;
 
+    private LinearLayout countrySpinner, stateSpinner , citySpinner;
+    private TextView textCountryName , textStateName , textCityName ;
+
+    String countryId , stateId , cityId;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient);
 
+        MobileAds.initialize(this,
+                Utilities.ADMOB_INTIALIZE );
 
-        cityEdit = findViewById(R.id.edit_search_city);
+       AdView mAdView = findViewById(R.id.adView_search_top);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
+
         bloodEdit = findViewById(R.id.edit_search_blood);
         searchBtn = findViewById(R.id.button_search);
         progressBarSearch = findViewById(R.id.progress_search);
         recyclerViewSearch = findViewById(R.id.recycleView_search);
         checkBoxAll = findViewById(R.id.checkbox_all);
         txtNoResult = findViewById(R.id.text_no_result);
+
+        countrySpinner = findViewById(R.id.spinner_country);
+        stateSpinner = findViewById(R.id.spinner_state);
+        citySpinner = findViewById(R.id.spinner_city);
+        textCountryName = findViewById(R.id.text_country_name);
+        textStateName = findViewById(R.id.text_state_name);
+        textCityName = findViewById(R.id.text_city_name);
 
 
         ((DaggerApplication) getApplication()).getAppComponent().inject(this);
@@ -83,42 +113,67 @@ public class PatientActivity extends AppCompatActivity implements searchView {
             public void onClick(View v) {
 
 
-                if (cityEdit.getText().toString().equals(""))
+                if(bloodEdit.getText().toString() .equals("") && checkBoxAll.isChecked()) {
+
+                    searchPresenter.searchPresenter(countryId, stateId, cityId, bloodEdit.getText().toString());
+                }
+                else if(!bloodEdit.getText().toString() .equals("") && !checkBoxAll.isChecked())
                 {
-                    cityEdit.setError("لابد من اختيار المدينة القريبة منك");
-                    return;
-                }
-              else  if(bloodEdit.getText().toString().equals("") && flagChecked == false) {
-                    bloodEdit.setError("لابد من اختيار فصيلة الدم");
-
-                    return;
+                    searchPresenter.searchPresenter(countryId, stateId, cityId, bloodEdit.getText().toString());
                 }
 
-                else
+                else if(bloodEdit.getText().toString() .equals("") && !checkBoxAll.isChecked())
                 {
-                    searchPresenter.searchPresenter();
-
+                    Toast.makeText(PatientActivity.this, getString(R.string.blood_type_error), Toast.LENGTH_SHORT).show();
                 }
+
+
 
                 }
         });
 
 
-
-
-        cityEdit.setOnTouchListener(new View.OnTouchListener() {
+        countrySpinner.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_DOWN)
-                {
-                    Intent intent = new Intent(PatientActivity.this , PlacesActivity.class);
-                    startActivityForResult(intent , 2040);
-                }
+            public void onClick(View v) {
+                Intent intent = new Intent(PatientActivity.this ,CountryListActivity.class);
+                startActivityForResult(intent , 1);
 
-
-                return false;
             }
         });
+
+
+        stateSpinner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(countryId!= null) {
+                    Intent intent = new Intent(PatientActivity.this, StateActivity.class);
+                    intent.putExtra("country_id", countryId);
+                    startActivityForResult(intent, 2);
+                }
+                else
+                {
+                    Toast.makeText(PatientActivity.this, getString(R.string.select_country), Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+
+        citySpinner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(stateId!= null) {
+                    Intent intent = new Intent(PatientActivity.this, CityListActivity.class);
+                    intent.putExtra("state_id", stateId);
+                    startActivityForResult(intent, 3);
+                }
+                else
+                {
+                    Toast.makeText(PatientActivity.this, getString(R.string.state), Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
 
 
         checkBoxAll.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -208,19 +263,37 @@ public class PatientActivity extends AppCompatActivity implements searchView {
     @Override
     public void showErrorMessage(String message) {
 
-        //Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void showSuccessMessage(String message) {
 
-        //Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void showCityError(String cityError) {
-        cityEdit.setError(cityError);
+    public void showCityError() {
+        Toast.makeText(this, getString(R.string.select_city), Toast.LENGTH_SHORT).show();
     }
+
+    @Override
+    public void showCountryError() {
+        Toast.makeText(this, getString(R.string.select_country), Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void showStateError() {
+        Toast.makeText(this, getString(R.string.select_state), Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void showBloodTypeError() {
+
+    }
+
 
     @Override
     public void showSearchResponse(SearchResponse searchResponse) {
@@ -243,29 +316,126 @@ public class PatientActivity extends AppCompatActivity implements searchView {
     }
 
     @Override
-    public String getCity() {
-        return cityEdit.getText().toString();
+    public String getCountryId() {
+        return countryId;
     }
+
+    @Override
+    public String getStateId() {
+        return stateId;
+    }
+
+    @Override
+    public String getCityId() {
+        return cityId;
+    }
+
 
     @Override
     public String getBloodType() {
         return bloodEdit.getText().toString();
     }
 
+
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 2040) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == 1) {
             if(resultCode == Activity.RESULT_OK){
-                String result=data.getStringExtra("result");
-                cityEdit.setText(result);
-                cityEdit.setError(null);
+
+                String countryEnglish=data.getStringExtra("country_en");
+                String countryArabic=data.getStringExtra("country_ar");
+
+
+
+                if(Utilities.getLanguage().equals("en")){
+                    if(countryEnglish != null ) {
+
+                        textCountryName .setText(countryEnglish);
+                        countryId = data.getStringExtra("country_id");
+                        textStateName.setText(getString(R.string.state));
+                        textCityName.setText(getString(R.string.city));
+                    }
+                    else
+                    {
+                        textCountryName .setText(getString(R.string.country));
+
+                    }
+                }
+                else if (Utilities.getLanguage().equals("ar")){
+                    if(countryArabic != null ) {
+
+                        textCountryName .setText(countryArabic);
+                        countryId = data.getStringExtra("country_id");
+                        textStateName.setText(getString(R.string.state));
+                        textCityName.setText(getString(R.string.city));
+                    }
+                    else
+                    {
+                        textCountryName .setText(getString(R.string.country));
+
+                    }
+                }
+
             }
-            if (resultCode == Activity.RESULT_CANCELED) {
-                //Write your code if there's no result
+
+        }
+
+        else  if (requestCode == 2) {
+            if (resultCode == Activity.RESULT_OK) {
+                String stateEnglish = data.getStringExtra("state_en");
+                String stateArabic = data.getStringExtra("state_ar");
+
+
+                if (Utilities.getLanguage().equals("en")) {
+                    if (stateEnglish != null) {
+                        textStateName.setText(stateEnglish);
+                        stateId = data.getStringExtra("state_id");
+                        textCityName.setText(getString(R.string.city));
+                    } else {
+                        textStateName.setText(getString(R.string.state));
+                    }
+
+                } else if (Utilities.getLanguage().equals("ar")) {
+                    if (stateArabic != null) {
+                        textStateName.setText(stateArabic);
+                        stateId = data.getStringExtra("state_id");
+                        textCityName.setText(getString(R.string.city));
+                    } else {
+                        textStateName.setText(getString(R.string.state));
+                    }
+
+                }
             }
+        }
+        else if (requestCode == 3) {
+            if (resultCode == Activity.RESULT_OK) {
+                String cityEnglish = data.getStringExtra("city_en");
+                String cityArabic = data.getStringExtra("city_ar");
+
+
+                if (Utilities.getLanguage().equals("en")) {
+                    if (cityEnglish != null) {
+                        textCityName.setText(cityEnglish);
+                        cityId = data.getStringExtra("city_id");
+                    } else {
+                        textCityName.setText(getString(R.string.city));
+                    }
+                } else if (Utilities.getLanguage().equals("ar")) {
+                    if (cityArabic != null) {
+                        textCityName.setText(cityArabic);
+                        cityId = data.getStringExtra("city_id");
+                    } else {
+                        textCityName.setText(getString(R.string.city));
+                    }
+                }
+            }
+
         }
 
 
+    }//onActivityResult
 
-    }
+
+
 }

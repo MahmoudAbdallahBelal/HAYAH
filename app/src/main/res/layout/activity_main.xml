@@ -19,10 +19,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <com.google.android.gms.ads.AdView
+            xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView_main_activity_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-2223962490254338/4498230285">
+        </com.google.android.gms.ads.AdView>
+
     <ImageView
         android:layoutDirection="locale"
         android:padding="60dp"
-        android:src="@drawable/hayah_mid"
+        android:src="@drawable/new_logo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -46,7 +57,7 @@
 
 
     <Button
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="10dp"
         android:layoutDirection="locale"
         android:textColor="@color/colorWhite"
         android:background="@drawable/button_background"
@@ -76,5 +87,20 @@
         android:layout_height="wrap_content" />
 
 
-</LinearLayout>
+        <com.google.android.gms.ads.AdView
+            xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView_main_activity_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            ads:adSize="BANNER"
+
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="0dp"
+            ads:adUnitId="ca-app-pub-2223962490254338/4498230285">
+        </com.google.android.gms.ads.AdView>
+
+
+    </LinearLayout>
 </LinearLayout>

@@ -10,7 +10,7 @@ import java.util.List;
 
 public class DataObjectDetails {
 
-    @SerializedName("volunteers")
+    @SerializedName("users")
     private List<VolunteersDetails> volunteers;
 
     public List<VolunteersDetails> getVolunteers() {

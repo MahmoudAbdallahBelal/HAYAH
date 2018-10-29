@@ -3,18 +3,18 @@ package hayah.donation.models.login;
 import com.google.gson.annotations.SerializedName;
 
 public class LoginRequest {
-    @SerializedName("email")
-    private String email;
+    @SerializedName("user")
+    private String user;
 
     @SerializedName("password")
     private String password;
 
     public String getEmail() {
-        return email;
+        return user;
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.user = email;
     }
 
     public String getPassword() {

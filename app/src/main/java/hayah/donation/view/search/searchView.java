@@ -12,14 +12,21 @@ public interface searchView extends BaseView {
     void showErrorMessage(String message);
     void showSuccessMessage(String message);
 
-    void showCityError(String cityError);
+    void showCityError();
+    void showCountryError();
+    void showStateError();
+    void showBloodTypeError();
 
 
     void showSearchResponse(SearchResponse searchResponse);
 
 
 
-    String getCity();
+    String getCountryId();
+
+    String getStateId();
+
+    String getCityId();
 
     String getBloodType();
 

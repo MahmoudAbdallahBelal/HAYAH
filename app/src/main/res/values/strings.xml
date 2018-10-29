@@ -9,14 +9,16 @@
     <string name="sign_up_age">Age</string>
     <string name="sign_up_mobile">Mobile</string>
     <string name="blood_type">Blood Type</string>
-    <string name="Email">Email</string>
+    <string name="Email">Email / Mobile </string>
+    <string name="register_Email">Email (Optional)</string>
     <string name="password">Password</string>
     <string name="country">Country</string>
     <string name="state">State</string>
     <string name="city">City</string>
-
+    <string name="no_result">there is no one yet</string>
     <string name="select_country">Select Country</string>
     <string name="select_city">Select City</string>
+    <string name="select_state">Select State</string>
     <string name="sign_in_email">Email</string>
     <string name="profile_available">Available for blood donation</string>
     <string name="profile_update">Update</string>
@@ -34,6 +36,17 @@
     <string name="password_error">password must be 8 characters</string>
     <string name="blood_type_error">Select your blood type</string>
 
-    <string name="general_error">Error, try again</string>
+    <string name="general_error">Error, try again with valid data</string>
+    <string name="thanks">Thanks, for signUp @ Hayah</string>
+    <string name="updated">You are updated your information @ Hayah</string>
+    <string name="invalid_email_password">invalid email / Mobile or password</string>
+    <string name="loading">Loading . . .</string>
+    <string name="all_blood_type">All Blood Type</string>
+    <string name="search">search</string>
+
+    <string name="call">Call</string>
+    <string name="no_result_state">No States Yet</string>
+    <string name="no_result_city">No Cities Yet</string>
+
 </resources>
 

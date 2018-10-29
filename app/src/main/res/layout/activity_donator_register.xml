@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layoutDirection="locale"
     android:textDirection="locale"
 
@@ -15,7 +15,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
-
 
 
 
@@ -33,9 +32,12 @@
 
 
 
-
-        <EditText
+        <android.support.design.widget.TextInputLayout
+            android:layout_marginTop="6dp"
             android:hint="@string/sign_up_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <EditText
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:inputType="text"
@@ -45,10 +47,16 @@
             android:textColor="#000"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+        </android.support.design.widget.TextInputLayout>
 
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_marginTop="6dp"
+            android:hint="@string/sign_up_age"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
         <EditText
-            android:hint="@string/sign_up_age"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:maxLength="2"
@@ -59,26 +67,36 @@
             android:textColor="#000"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+        </android.support.design.widget.TextInputLayout>
 
+        <android.support.design.widget.TextInputLayout
+            android:layout_marginTop="6dp"
+            android:hint="@string/blood_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
         <EditText
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:textSize="18sp"
-            android:hint="@string/blood_type"
             android:layoutDirection="locale"
             android:textDirection="locale"
             android:id="@+id/edit_blood_type"
             android:textColor="#000"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+        </android.support.design.widget.TextInputLayout>
 
 
+        <android.support.design.widget.TextInputLayout
+            android:layout_marginTop="6dp"
+            android:hint="@string/register_Email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
         <EditText
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:hint="@string/Email"
 
             android:layoutDirection="locale"
             android:textDirection="locale"
@@ -88,13 +106,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
+        </android.support.design.widget.TextInputLayout>
 
+
+
+        <android.support.design.widget.TextInputLayout
+            app:passwordToggleEnabled="true"
+            android:layout_marginTop="6dp"
+            android:hint="@string/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
         <EditText
 
+            android:inputType="textPassword"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:hint="@string/password"
             android:layoutDirection="locale"
             android:textDirection="locale"
             android:id="@+id/edit_password"
@@ -103,9 +130,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-
+        </android.support.design.widget.TextInputLayout>
         <LinearLayout
 
+            android:layout_marginTop="5dp"
             android:gravity="center"
             android:layout_gravity="center"
             android:textDirection="locale"
@@ -120,7 +148,7 @@
                 android:layout_margin="6dp"
                 android:background="@drawable/spinner_background"
                 android:orientation="vertical"
-                android:focusableInTouchMode="true"
+                android:focusableInTouchMode="false"
                 android:layout_weight="1"
                 android:layoutDirection="locale"
                 android:textDirection="locale"
@@ -141,7 +169,7 @@
 
                 android:background="@drawable/spinner_background"
                 android:orientation="vertical"
-                android:focusableInTouchMode="true"
+                android:focusableInTouchMode="false"
                 android:layout_weight="1"
                 android:layoutDirection="locale"
                 android:textDirection="locale"
@@ -163,7 +191,7 @@
 
                 android:background="@drawable/spinner_background"
                 android:orientation="vertical"
-                android:focusableInTouchMode="true"
+                android:focusableInTouchMode="false"
                 android:layout_weight="1"
                 android:layoutDirection="locale"
                 android:textDirection="locale"
@@ -187,13 +215,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-
+            <android.support.design.widget.TextInputLayout
+                android:layout_marginTop="6dp"
+                android:hint="@string/sign_up_mobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
             <EditText
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:textSize="18sp"
-                android:hint="@string/sign_up_mobile"
                 android:inputType="number"
                 android:layout_weight=".5"
                 android:layoutDirection="locale"
@@ -202,6 +233,7 @@
                 android:textColor="#000"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+            </android.support.design.widget.TextInputLayout>
 
             <!--<ImageButton-->
             <!--android:id="@+id/image_button_add_mobile"-->
@@ -242,7 +274,19 @@
             android:layout_height="wrap_content" />
 
 
-
+        <com.google.android.gms.ads.AdView
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="1dp"
+            android:layout_gravity="center"
+            xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView_donator_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-2223962490254338/4498230285">
+        </com.google.android.gms.ads.AdView>
 
     </LinearLayout>
 </ScrollView>

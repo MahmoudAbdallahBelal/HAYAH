@@ -12,8 +12,11 @@ import hayah.donation.models.register.RegisterRequest;
 import hayah.donation.models.register.RegisterResponse;
 import hayah.donation.models.search.SearchRequest;
 import hayah.donation.models.search.SearchResponse;
+import hayah.donation.models.update.UpdateRequest;
+import hayah.donation.models.update.UpdateResponse;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import rx.Observable;
@@ -22,6 +25,11 @@ public interface ApiInterface {
 
     @POST(EndPoints.REGISTER)
     Observable<RegisterResponse> registerObservable(@Body RegisterRequest registerRequest);
+
+
+    @POST(EndPoints.UPDATE)
+    Observable<UpdateResponse> updateObservable(@Header("Authorization")  String authorization,@Path("id") String id ,@Body UpdateRequest updateRequest);
+
 
     @POST(EndPoints.LOGIN)
     Observable<LoginResponse> loginObservable(@Body LoginRequest loginRequest);

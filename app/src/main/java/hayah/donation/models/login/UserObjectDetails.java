@@ -1,50 +1,19 @@
-package hayah.donation.models.register;
+package hayah.donation.models.login;
 
 import com.google.gson.annotations.SerializedName;
 
-/**
- * Created by belal on 8/18/18.
- */
+public class UserObjectDetails {
 
-public class RegisterRequest {
+    @SerializedName("id")
+    private  String id ;
 
-    @SerializedName("name")
-    private  String name ;
+    public String getId() {
+        return id;
+    }
 
-    @SerializedName("email")
-    private  String email ;
-
-    @SerializedName("password")
-    private  String password ;
-
-    @SerializedName("phone")
-    private  String phone ;
-
-    @SerializedName("country_id")
-    private  String country_id ;
-
-    @SerializedName("state_id")
-    private  String state_id ;
-
-    @SerializedName("city_id")
-    private  String city_id ;
-
-
-    @SerializedName("phone2")
-    private  String phone2 ;
-
-    @SerializedName("address")
-    private  String address ;
-
-    @SerializedName("age")
-    private  String age ;
-
-    @SerializedName("blood_type")
-    private  String blood_type ;
-
-    @SerializedName("available")
-    private  String available ;
-
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -60,14 +29,6 @@ public class RegisterRequest {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getPhone() {
@@ -142,15 +103,39 @@ public class RegisterRequest {
         this.available = available;
     }
 
+    @SerializedName("name")
+
+    private  String name ;
+
+    @SerializedName("email")
+    private  String email ;
 
 
+    @SerializedName("phone")
+    private  String phone ;
 
+    @SerializedName("country_id")
+    private  String country_id ;
 
+    @SerializedName("state_id")
+    private  String state_id ;
 
+    @SerializedName("city_id")
+    private  String city_id ;
 
+    @SerializedName("phone2")
+    private  String phone2 ;
 
+    @SerializedName("address")
+    private  String address ;
 
+    @SerializedName("age")
+    private  String age ;
 
+    @SerializedName("blood_type")
+    private  String blood_type ;
 
+    @SerializedName("available")
+    private  String available ;
 
 }

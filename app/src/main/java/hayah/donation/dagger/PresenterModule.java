@@ -10,6 +10,7 @@ import dagger.Provides;
 import hayah.donation.view.Country.countryList.country.CountryListPresenter;
 import hayah.donation.view.Country.countryList.city.CityListPresenter;
 import hayah.donation.view.Country.countryList.state.StatesListPresenter;
+import hayah.donation.view.donator_profile.ProfilePresenter;
 import hayah.donation.view.login.LoginPresenter;
 import hayah.donation.view.register.RegisterPresenter;
 import hayah.donation.view.search.SearchPresenter;
@@ -66,6 +67,14 @@ public class PresenterModule {
         return new LoginPresenter(context);
     }
 
+
+
+    @Provides
+    @Singleton
+    ProfilePresenter provideProfilePresenter(Context context) {
+
+        return new ProfilePresenter(context);
+    }
 
 }
 
