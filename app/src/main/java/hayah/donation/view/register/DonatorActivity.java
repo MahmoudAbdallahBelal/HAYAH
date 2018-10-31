@@ -44,8 +44,7 @@ public class DonatorActivity extends AppCompatActivity implements RegisterView  
     @Inject
     RegisterPresenter registerPresenter;
 
-    private EditText nameEdit, ageEdit,mobileEdit  , bloodType , emailEdit , passwordEdit;
-    private AutoCompleteTextView addressEdit,addressEdit2;
+    private EditText nameEdit, ageEdit,mobileEdit  , bloodType , emailEdit , passwordEdit , addressEdit;
     private Button registerBtn;
     private ProgressBar progressBarRegister;
 
@@ -81,6 +80,8 @@ public class DonatorActivity extends AppCompatActivity implements RegisterView  
         textCityName = findViewById(R.id.text_city_name);
         emailEdit = findViewById(R.id.edit_email);
         passwordEdit = findViewById(R.id.edit_password);
+        addressEdit = findViewById(R.id.edit_address);
+
 
         MobileAds.initialize(this,
                 Utilities.ADMOB_INTIALIZE);
@@ -340,6 +341,11 @@ public class DonatorActivity extends AppCompatActivity implements RegisterView  
     @Override
     public String getPassword() {
         return passwordEdit.getText().toString();
+    }
+
+    @Override
+    public String getAddress() {
+        return addressEdit.getText().toString();
     }
 
     @Override

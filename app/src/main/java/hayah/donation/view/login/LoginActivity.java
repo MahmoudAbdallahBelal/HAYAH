@@ -34,44 +34,49 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
 
 
-        ((DaggerApplication) getApplication()).getAppComponent().inject(this);
-
-        loginPresenter.onAttach(this);
-
-        MobileAds.initialize(this,
-                Utilities.ADMOB_INTIALIZE);
-
-        AdView mAdView = findViewById(R.id.adView_donator_bottom_login);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+        if(Utilities.retrieveUserInfo(LoginActivity.this) != null)
+        {
+            Intent intent = new Intent(LoginActivity.this , DonstorProfileActivity.class);
+            startActivity(intent);
+            LoginActivity.this.finish();
+        }
+        else {
+            setContentView(R.layout.activity_login);
 
 
+            ((DaggerApplication) getApplication()).getAppComponent().inject(this);
+
+            loginPresenter.onAttach(this);
+
+            MobileAds.initialize(this,
+                    Utilities.ADMOB_INTIALIZE);
+
+            AdView mAdView = findViewById(R.id.adView_donator_bottom_login);
+            AdRequest adRequest = new AdRequest.Builder().build();
+            mAdView.loadAd(adRequest);
 
 
-        loginBtn = findViewById(R.id.button_login);
-        emailEdit = findViewById(R.id.edit_email_login);
-        passwordEdit = findViewById(R.id.edit_password_login);
-        progressBar = findViewById(R.id.progress_login);
+            loginBtn = findViewById(R.id.button_login);
+            emailEdit = findViewById(R.id.edit_email_login);
+            passwordEdit = findViewById(R.id.edit_password_login);
+            progressBar = findViewById(R.id.progress_login);
 
 
-        loginBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    loginPresenter.loginPresenter(emailEdit.getText().toString(), passwordEdit.getText().toString());
-                }catch (Exception e)
-                {
-                    Toast.makeText(LoginActivity.this, getString(R.string.invalid_email_password), Toast.LENGTH_SHORT).show();
+            loginBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try {
+                        loginPresenter.loginPresenter(emailEdit.getText().toString(), passwordEdit.getText().toString());
+                    } catch (Exception e) {
+                        Toast.makeText(LoginActivity.this, getString(R.string.invalid_email_password), Toast.LENGTH_SHORT).show();
+                    }
                 }
-            }
-        });
+            });
 
 
-
-
+        }
     }
 
     @Override
@@ -109,6 +114,8 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
        // Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(LoginActivity.this , DonstorProfileActivity.class);
         startActivity(intent);
+        LoginActivity.this.finish();
+
     }
 
     @Override

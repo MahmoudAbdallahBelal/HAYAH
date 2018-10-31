@@ -48,7 +48,7 @@
         <activity android:name=".view.Country.countryList.city.CityListActivity" />
         <activity
             android:name=".view.login.LoginActivity"
-            android:launchMode="singleInstance" />
+             />
         <activity
             android:name=".view.donator_profile.DonstorProfileActivity"
             android:launchMode="singleInstance" />

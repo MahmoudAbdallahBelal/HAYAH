@@ -59,4 +59,7 @@
     <string name="no_result_state">لا يوجد محافظات حتي الان</string>
     <string name="no_result_city">لا يوجد مدن حتي الان</string>
 
+    <string name="sign_up_address">العنوان (اختياري)</string>
+    <string name="show_address">العنوان</string>
+
 </resources>

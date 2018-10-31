@@ -30,6 +30,7 @@ public interface RegisterView extends BaseView {
     String getBloodType();
     String getEmail();
     String getPassword();
+    String getAddress();
 
 
 

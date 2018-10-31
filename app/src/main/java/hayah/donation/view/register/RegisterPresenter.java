@@ -129,6 +129,7 @@ public class RegisterPresenter implements BasePresenter<RegisterView> {
                 registerRequest.setBlood_type(mView.getBloodType());
                 registerRequest.setEmail(mView.getEmail());
                 registerRequest.setPassword(mView.getPassword());
+                registerRequest.setAddress(mView.getAddress());
                 registerRequest.setAvailable("1");
 
                 mApiInterface.registerObservable(registerRequest)

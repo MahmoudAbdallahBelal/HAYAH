@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -18,12 +18,13 @@
 
     <TextView
 
+        android:textSize="17sp"
         android:visibility="gone"
         android:id="@+id/not_result_city"
         android:layout_gravity="center"
         android:textColor="@color/colorGray"
         android:gravity="center"
-        android:text="@string/no_result_state"
+        android:text="@string/no_result_city"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-</LinearLayout>
+</FrameLayout>

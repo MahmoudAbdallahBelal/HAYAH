@@ -42,6 +42,17 @@ public class VolunteersDetails {
     @SerializedName("age")
     private String age ;
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    @SerializedName("address")
+
+    private String address ;
 
 
 

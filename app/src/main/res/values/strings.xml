@@ -7,6 +7,7 @@
 
     <string name="sign_up_name">Full Name</string>
     <string name="sign_up_age">Age</string>
+    <string name="show_address">Address</string>
     <string name="sign_up_mobile">Mobile</string>
     <string name="blood_type">Blood Type</string>
     <string name="Email">Email / Mobile </string>
@@ -47,6 +48,7 @@
     <string name="call">Call</string>
     <string name="no_result_state">No States Yet</string>
     <string name="no_result_city">No Cities Yet</string>
+    <string name="sign_up_address">Address (optional)</string>
 
 </resources>
 

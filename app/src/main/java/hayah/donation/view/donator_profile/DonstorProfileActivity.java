@@ -258,9 +258,9 @@ public class DonstorProfileActivity extends AppCompatActivity implements Profile
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent i  = new Intent(DonstorProfileActivity.this , LoginActivity.class);
-        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(i);
+//        Intent i  = new Intent(DonstorProfileActivity.this , LoginActivity.class);
+//        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
+//        startActivity(i);
     }
 
     @Override

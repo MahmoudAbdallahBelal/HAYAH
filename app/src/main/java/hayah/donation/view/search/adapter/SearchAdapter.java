@@ -28,8 +28,8 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView nameTxt ,mobileTxt , mobile2Txt ;
-        public LinearLayout linearLayout;
+        public TextView nameTxt ,mobileTxt , mobile2Txt , addressTxt ;
+        public LinearLayout linearLayout , linearLayoutShowAddress;
         public Button callBtn ;
 
 
@@ -41,6 +41,9 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
             mobile2Txt= view.findViewById(R.id.text_item_search_mobile2);
             linearLayout = view.findViewById(R.id.linear_item);
             callBtn = view . findViewById(R.id.button_call);
+            linearLayoutShowAddress = view.findViewById(R.id.linear_show_address);
+            addressTxt = view.findViewById(R.id.text_item_show_address);
+
 
 
 
@@ -67,9 +70,15 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
 
+        if(list.get(position).getAddress() == null)
+        {
+            holder.linearLayoutShowAddress.setVisibility(View.INVISIBLE);
+        }
          holder.nameTxt.setText(list.get(position).getName());
          holder.mobileTxt.setText(list.get(position).getPhone());
          holder.mobile2Txt.setText(list.get(position).getAge());
+         holder.addressTxt.setText(list.get(position).getAddress());
+
 
 
          holder.callBtn.setOnClickListener(new View.OnClickListener() {
