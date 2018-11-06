@@ -44,8 +44,7 @@ import hayah.donation.view.register.DonatorActivity;
 public class DonstorProfileActivity extends AppCompatActivity implements ProfileView {
 
 
-    private EditText nameEdit, ageEdit,mobileEdit  , bloodType , emailEdit ;
-    private AutoCompleteTextView addressEdit,addressEdit2;
+    private EditText nameEdit, ageEdit,mobileEdit  , bloodType , emailEdit ,addressEdit ;
     private Button updateBtn;
     private ProgressBar progressBarProfile;
 
@@ -91,6 +90,8 @@ public class DonstorProfileActivity extends AppCompatActivity implements Profile
         progressBarProfile = findViewById(R.id.progress_profile_update);
 
         switchAvailability = findViewById(R.id.switch_profile_available);
+        addressEdit = findViewById(R.id.edit_address_profile);
+
 
 
         getProfileInfo();
@@ -225,6 +226,7 @@ public class DonstorProfileActivity extends AppCompatActivity implements Profile
         mobileEdit.setText(loginResponse.getData().getPhone());
         bloodType.setText(loginResponse.getData().getBlood_type());
         ageEdit.setText(loginResponse.getData().getAge());
+        addressEdit.setText(loginResponse.getData().getAddress());
 
         token = loginResponse.getData().getToken();
         userId = loginResponse.getData().getId();
@@ -377,6 +379,11 @@ public class DonstorProfileActivity extends AppCompatActivity implements Profile
     }
 
     @Override
+    public String getAddress() {
+        return addressEdit.getText().toString();
+    }
+
+    @Override
     public void showCountry(String country) {
         textCountryName.setText(country);
     }
@@ -470,7 +477,7 @@ public class DonstorProfileActivity extends AppCompatActivity implements Profile
         else  if (requestCode == 3) {
             if (resultCode == Activity.RESULT_OK) {
                 String cityEnglish = data.getStringExtra("city_en");
-                String cityArabic = data.getStringExtra("city_en");
+                String cityArabic = data.getStringExtra("city_ar");
 
 
                 if (Utilities.getLanguage().equals("en")) {

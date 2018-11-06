@@ -139,6 +139,7 @@ public class ProfilePresenter implements BasePresenter<ProfileView> {
                 updateRequest.setBlood_type(mView.getBloodType());
                 updateRequest.setEmail(mView.getEmail());
                 updateRequest.setAvailable(mView.getAvailability());
+                updateRequest.setAddress(mView.getAddress());
 
                 mApiInterface.updateObservable("Bearer "+token ,userId ,updateRequest)
                         .subscribeOn(Schedulers.io())
@@ -153,8 +154,6 @@ public class ProfilePresenter implements BasePresenter<ProfileView> {
                             @Override
                             public final void onError(Throwable e) {
 
-
-                                mView.showErrorMessage(mContext.getString(R.string.general_error));
 
                                 mView.hideLoading();
 

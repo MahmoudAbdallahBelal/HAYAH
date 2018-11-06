@@ -224,7 +224,7 @@ public class CountryListActivity extends AppCompatActivity implements  CountryLi
         returnIntent.putExtra("country_en",countryNameSelected);
         returnIntent.putExtra("country_ar",countryNameSelected);
         returnIntent.putExtra("phone_code",CountryPhoneCode);
-        returnIntent.putExtra("country_id",CountryId);
+        returnIntent.putExtra("country_id",""+Integer.parseInt(CountryId) );
         setResult(Activity.RESULT_OK,returnIntent);
         finish();
 

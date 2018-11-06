@@ -29,6 +29,7 @@ public interface ProfileView extends BaseView {
     String getBloodType();
     String getEmail();
     String getAvailability();
+    String getAddress();
 
 
     void showCountry(String country);

@@ -50,5 +50,7 @@
     <string name="no_result_city">No Cities Yet</string>
     <string name="sign_up_address">Address (optional)</string>
 
+    <string name="copy_right">© 2018 HAYAH 1.0 </string>
+
 </resources>
 

@@ -11,13 +11,17 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import hayah.donation.R;
 import hayah.donation.dagger.DaggerApplication;
+import hayah.donation.helper.Utilities;
 import hayah.donation.models.States.StatesResponse;
+import hayah.donation.models.country.CountryResponse;
+import hayah.donation.view.Country.countryList.country.ChooseCountryAdapter;
 import hayah.donation.view.Country.countryList.country.CountryListActivity;
 
 public class StateActivity extends AppCompatActivity implements StateListView{
@@ -88,29 +92,68 @@ public class StateActivity extends AppCompatActivity implements StateListView{
     @Override
     public void showStateList(final List<StatesResponse> responseList) {
 
-        if(responseList.size() != 0) {
-            txtNoResult.setVisibility(View.INVISIBLE);
 
-            stateListAdapter adapter = new stateListAdapter(StateActivity.this, responseList);
-            statesListView.setAdapter(adapter);
+        try {
+            List<StatesResponse> responseListArabic = new ArrayList<>();
 
 
-            statesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            if(responseList.size() != 0) {
 
-                    Intent returnIntent = new Intent();
-                    returnIntent.putExtra("state_en", responseList.get(position).getName_en());
-                    returnIntent.putExtra("state_ar", responseList.get(position).getName_ar());
-                    returnIntent.putExtra("state_id", responseList.get(position).getId());
-                    setResult(Activity.RESULT_OK, returnIntent);
-                    finish();
+                txtNoResult.setVisibility(View.INVISIBLE);
 
+                if (Utilities.getLanguage().equals("ar")) {
+
+                    for (int i = 0; i < responseList.size(); i++) {
+                        if (!responseList.get(i).getName_ar().equals("غير مترجم")) {
+
+                            responseListArabic.add(responseList.get(i));
+                        }
+
+                    }
+                    if(responseListArabic.size() == 0 ){
+
+                        txtNoResult.setVisibility(View.VISIBLE);
+                    }
+                    else {
+                        stateListAdapter adapter = new stateListAdapter(StateActivity.this, responseListArabic);
+                        statesListView.setAdapter(adapter);
+                    }
 
                 }
-            });
-        }else {
-           txtNoResult.setVisibility(View.VISIBLE);
+                else if (Utilities.getLanguage().equals("en")) {
+                    stateListAdapter adapter = new stateListAdapter(StateActivity.this, responseList);
+                    statesListView.setAdapter(adapter);
+                }
+
+
+                statesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                        Intent returnIntent = new Intent();
+                        returnIntent.putExtra("state_en", responseList.get(position).getName_en());
+                        returnIntent.putExtra("state_ar", responseList.get(position).getName_ar());
+                        returnIntent.putExtra("state_id", responseList.get(position).getId());
+                        setResult(Activity.RESULT_OK, returnIntent);
+                        finish();
+
+
+                    }
+                });
+
+            }
+            else
+            {
+                txtNoResult.setVisibility(View.VISIBLE);
+
+            }
+
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
+
     }
 }

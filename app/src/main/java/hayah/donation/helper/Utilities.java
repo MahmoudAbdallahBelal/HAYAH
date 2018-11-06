@@ -29,6 +29,15 @@ public class Utilities {
         editor.commit();
 
     }
+    public static void clearUserInfo(Context context )
+    {
+        sharedPreferences = context.getSharedPreferences(SharedPreferencesName, 0);
+        SharedPreferences.Editor editor= sharedPreferences.edit();
+        editor.clear();
+        editor.commit();
+
+    }
+
 
     public static LoginResponse retrieveUserInfo(Context context)
     {

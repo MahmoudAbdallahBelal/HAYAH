@@ -12,6 +12,7 @@ import com.google.android.gms.ads.MobileAds;
 
 import hayah.donation.R;
 import hayah.donation.helper.Utilities;
+import hayah.donation.view.donator_profile.DonstorProfileActivity;
 import hayah.donation.view.login.LoginActivity;
 import hayah.donation.view.register.DonatorActivity;
 
@@ -22,40 +23,51 @@ public class DonatorLoginRegisterChoiceActivity extends AppCompatActivity implem
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_donator_login_register_choice);
 
 
-        MobileAds.initialize(this,
-                Utilities.ADMOB_INTIALIZE);
 
-        AdView mAdView = findViewById(R.id.adView_choice_bottom);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+        if(Utilities.retrieveUserInfo(DonatorLoginRegisterChoiceActivity.this) != null)
+        {
+            Intent intent = new Intent(DonatorLoginRegisterChoiceActivity.this , DonstorProfileActivity.class);
+            startActivity(intent);
+            DonatorLoginRegisterChoiceActivity.this.finish();
+        }
 
-        signInBtn = findViewById(R.id.button_sign_in);
-        signUpBtn = findViewById(R.id.button_sign_up);
+        else {
+            setContentView(R.layout.activity_donator_login_register_choice);
 
-        signUpBtn.setOnClickListener(this);
-        signInBtn.setOnClickListener(this);
 
+            MobileAds.initialize(this,
+                    Utilities.ADMOB_INTIALIZE);
+
+            AdView mAdView = findViewById(R.id.adView_choice_bottom);
+            AdRequest adRequest = new AdRequest.Builder().build();
+            mAdView.loadAd(adRequest);
+
+            signInBtn = findViewById(R.id.button_sign_in);
+            signUpBtn = findViewById(R.id.button_sign_up);
+
+            signUpBtn.setOnClickListener(this);
+            signInBtn.setOnClickListener(this);
+
+        }
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick(View v){
 
-        switch (v.getId())
-        {
-            case R.id.button_sign_up :
+            switch (v.getId()) {
+                case R.id.button_sign_up:
 
-                startDonatorRegisterActivity();
-                break;
+                    startDonatorRegisterActivity();
+                    break;
 
-            case R.id.button_sign_in :
-                startLoginActivityActivity();
-                break;
+                case R.id.button_sign_in:
+                    startLoginActivityActivity();
+                    break;
 
 
-        }
+            }
 
 
     }

@@ -52,7 +52,7 @@ public class StatesListPresenter implements BasePresenter<StateListView> {
     public void getStates(String CountryId) {
 
         Integer countryId = Integer.parseInt(CountryId);
-        countryId+=1;
+
         try {
             if (!Utilities.checkConnection(mContext)) {
                 mView.showErrorMessage("");
@@ -85,7 +85,6 @@ public class StatesListPresenter implements BasePresenter<StateListView> {
                             public final void onError(Throwable e) {
 
 
-                                Toast.makeText(mContext, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                                 mView.hideLoading();
 
 

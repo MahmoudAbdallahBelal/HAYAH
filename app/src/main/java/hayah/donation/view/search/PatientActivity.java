@@ -39,8 +39,6 @@ import hayah.donation.models.search.SearchResponse;
 import hayah.donation.view.Country.countryList.city.CityListActivity;
 import hayah.donation.view.Country.countryList.country.CountryListActivity;
 import hayah.donation.view.Country.countryList.state.StateActivity;
-import hayah.donation.view.places.PlacesActivity;
-import hayah.donation.view.register.DonatorActivity;
 import hayah.donation.view.search.adapter.SearchAdapter;
 
 public class PatientActivity extends AppCompatActivity implements searchView {

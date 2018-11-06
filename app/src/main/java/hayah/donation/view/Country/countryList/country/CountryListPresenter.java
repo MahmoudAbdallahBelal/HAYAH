@@ -83,7 +83,6 @@ public class CountryListPresenter implements BasePresenter<CountryListView> {
                             public final void onError(Throwable e) {
 
 
-                                Toast.makeText(mContext, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                                 mView.hideLoading();
 
 
