@@ -252,7 +252,6 @@ public class ProfilePresenter implements BasePresenter<ProfileView> {
     public void getState(String countryId, final String stateId)
     {
         Integer countryNewId = Integer.parseInt(countryId);
-        countryNewId +=1;
 
         mApiInterface.getStatesObservable(""+countryNewId)
                 .subscribeOn(Schedulers.io())
